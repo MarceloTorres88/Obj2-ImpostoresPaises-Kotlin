@@ -76,18 +76,16 @@ class ObservatorioTest : DescribeSpec({
                 Observatorio.agregarPais(China) //Bolivia  se va , 10 M
                 val listaResultadoOrdenada = listOf(China,Brasil,España,Argentina,Peru) // tiene que estar ordenada por poblacion
                 Observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
-                Observatorio.listaPaises.remove(China) // saco el pais para que no interrumpa los otros test
             }
         }
 
         describe("quinto requerimiento - continente mas poblado"){
-            it("continente mas poblado america por que en la lista tiene 5 paises"){
-                Observatorio.continenteMasPoblado().shouldBe("Americas") // aca no remueve a china del describe anterior y tira error
-            }
-            it("agrego china y cambia de continente"){
-                Observatorio.agregarPais(China) // agrego china y sus 1300 M de habitantes
+            it("continente mas poblado asia por que tener mas habitantes"){
                 Observatorio.continenteMasPoblado().shouldBe("Asia")
-                Observatorio.listaPaises.remove(China) // saco el pais para que no interrumpa los otros test
+            }
+            it("sacamos a china y cambia de continente"){
+                Observatorio.listaPaises.remove(China) // sacamos a china con sus 1300 M de habitantes
+                Observatorio.continenteMasPoblado().shouldBe("Americas")
             }
         }
     }
