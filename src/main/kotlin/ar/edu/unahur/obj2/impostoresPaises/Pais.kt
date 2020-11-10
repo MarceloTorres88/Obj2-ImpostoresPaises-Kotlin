@@ -12,10 +12,25 @@ interface Pais {
 
     fun esLimitrofeCon(pais: Pais) = this.borders.contains(pais.alpha3Code)
 
-//    fun puedeDialogarCon(pais: Pais) =  this.languages.
+    fun puedeDialogarCon(pais: Pais) : Boolean{
+        val aux1 = mutableSetOf<String>()
+        val aux2 = mutableSetOf<String>()
 
-//    fun comparteBloqueRegionalCon(pais: Pais) = this.regionalBlocs.contains(pais.regionalBlocs)
-        // Estos 2 metodos tienen que comparar elementos de 2 listas distintas para ver si alguno coincide
+        this.languages.map{aux1.add(it.name)}
+        pais.languages.map{aux2.add(it.name)}
+
+        return aux1.intersect(aux2).isNotEmpty()
+    }
+
+    fun comparteBloqueRegionalCon(pais: Pais): Boolean{
+        val aux1 = mutableSetOf<String>()
+        val aux2 = mutableSetOf<String>()
+
+        this.regionalBlocs.map{aux1.add(it.name)}
+        pais.regionalBlocs.map{aux2.add(it.name)}
+
+        return aux1.intersect(aux2).isNotEmpty()
+    }
 }
 
 abstract class Lenguaje  {
