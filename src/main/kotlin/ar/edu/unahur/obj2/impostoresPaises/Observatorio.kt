@@ -6,14 +6,16 @@ object Observatorio {
     val listaPaises = mutableSetOf<Pais>()
 
     private fun encontrarPais(pais: String) : Pais {
-        if(!this.listaPaises.contains(pais)){
+        if(!this.listaPaises.any{it.name == pais}){
             throw error("el pais $pais no esta en la lista") // o mejorar el texto del error como convenga
         }else{
             return this.listaPaises.find{it.name == pais}!!
         }
     }
 
-    fun agregarPais(pais: Pais) = this.listaPaises.add(pais)
+    fun agregarPais(pais: Pais) {
+        this.listaPaises.add(pais)
+    }
 
     fun sonLimitrofes(pais1: String, pais2: String): Boolean {
         val aux1 = this.encontrarPais(pais1)
