@@ -8,8 +8,6 @@ val api = RestCountriesAPI()
 
 api.buscarPaisesPorNombre("brazil")
 
-api.buscarPaisesPorNombre("argent")
-
 api.paisConCodigo("PER")
 
 api.paisConCodigo("ARG")

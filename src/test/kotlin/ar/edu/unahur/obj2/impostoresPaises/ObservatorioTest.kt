@@ -3,7 +3,6 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldHave
 
 class ObservatorioTest : DescribeSpec({
 
@@ -67,25 +66,29 @@ class ObservatorioTest : DescribeSpec({
             }
         }
 
-//        describe("cuarto requerimeinto - paises con mayor poblacion"){
-//            it("nombres de los 5 paises con mayor poblacion"){
-//                // no entra panama por menor poblacion de todas
-//                Observatorio.cincoPaisesConMayorPoblacion().shouldBe(List<Pais>([Argentina,Brasil,Peru,Bolivia,España]))
-//            } // listOf<Pais>(Argentina,Brasil,Peru,Bolivia,España))
-//            it("agregamos pais con mayor poblacion y cambia lista"){
-//                Observatorio.agregarPais(China)
-//                //peru se va , 10 M
-//                Observatorio.cincoPaisesConMayorPoblacion().shouldBe(List<Pais>(Argentina,Brasil,Bolivia,España,China))
-//            }
-//        }
+        describe("cuarto requerimeinto - paises con mayor poblacion"){
+            it("nombres de los 5 paises con mayor poblacion"){
+                // no entra panama por menor poblacion de todas
+                val listaResultadoOrdenada = listOf(Argentina,Brasil,Peru,Bolivia,España) // tiene que estar ordenada por poblacion
+                Observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
+            }
+            it("agregamos pais con mayor poblacion y cambia lista"){
+                Observatorio.agregarPais(China)
+                //peru se va , 10 M
+                val listaResultadoOrdenada = listOf(Argentina,Brasil,China,Bolivia,España) // tiene que estar ordenada por poblacion
+                Observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
+                Observatorio.listaPaises.remove(China) // saco el pais para que no interrumpa los otros test
+            }
+        }
 
         describe("quinto requerimiento - continente mas poblado"){
             it("continente mas poblado america por que en la lista tiene 5 paises"){
-                Observatorio.continenteMasPoblado().shouldBe("Americas")// ver si devuelve esto, y si no cambiarlo
+                Observatorio.continenteMasPoblado().shouldBe("Americas") // aca no remueve a china del describe anterior y tira error
             }
             it("agrego china y cambia de continente"){
                 Observatorio.agregarPais(China) // agrego china y sus 1300 M de habitantes
-                Observatorio.continenteMasPoblado().shouldBe("Asia")// ver si devuelve esto, y si no cambiarlo
+                Observatorio.continenteMasPoblado().shouldBe("Asia")
+                Observatorio.listaPaises.remove(China) // saco el pais para que no interrumpa los otros test
             }
         }
     }

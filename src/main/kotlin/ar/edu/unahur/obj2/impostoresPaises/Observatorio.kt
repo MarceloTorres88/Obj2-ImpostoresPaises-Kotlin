@@ -3,8 +3,9 @@ package ar.edu.unahur.obj2.impostoresPaises
 import javax.naming.event.ObjectChangeListener
 
 object Observatorio {
-    val listaPaises = mutableSetOf<Pais>()
+    val listaPaises = mutableSetOf<Pais>() // esto va a desaparecer cuando implemente api
 
+    // este metodo tiene que cambiar su procesamiento para que le pegue a la api y traiga el pais
     private fun encontrarPais(pais: String) : Pais {
         if(!this.listaPaises.any{it.name == pais}){
             throw error("el pais $pais no esta en la lista") // o mejorar el texto del error como convenga
@@ -13,7 +14,7 @@ object Observatorio {
         }
     }
 
-    fun agregarPais(pais: Pais) {
+    fun agregarPais(pais: Pais) { // esto va a desaparecer cuando implemente api
         this.listaPaises.add(pais)
     }
 
@@ -38,7 +39,7 @@ object Observatorio {
         return !this.necesitanTraduccion(pais1,pais2) and aux1.comparteBloqueRegionalCon(aux2)
     }
 
-    fun cincoPaisesConMayorPoblacion() = this.listaPaises.sortedBy { it.population }.subList(0,4)
+    fun cincoPaisesConMayorPoblacion() = this.listaPaises.sortedByDescending { it.population }.subList(0,4)
 
     private fun filtrarPorContinente(continente : String) =  this.listaPaises.filter { it.region == continente }
 
