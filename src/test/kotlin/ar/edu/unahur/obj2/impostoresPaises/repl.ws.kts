@@ -1,3 +1,4 @@
+import ar.edu.unahur.obj2.impostoresPaises.Pais
 import ar.edu.unahur.obj2.impostoresPaises.RestCountriesAPI
 
 // Algunos ejemplos para que jueguen un poco
@@ -6,6 +7,8 @@ import ar.edu.unahur.obj2.impostoresPaises.RestCountriesAPI
 val api = RestCountriesAPI()
 
 api.buscarPaisesPorNombre("brazil")
+
+api.buscarPaisesPorNombre("argent")
 
 api.paisConCodigo("PER")
 
@@ -20,3 +23,7 @@ api.buscarPaisesPorNombre("spa")
 api.buscarPaisesPorNombre("china")
 
 // para primer commit
+
+val asdf = listOf<Pais>()
+
+asdf.sumBy { it.population }.toString()

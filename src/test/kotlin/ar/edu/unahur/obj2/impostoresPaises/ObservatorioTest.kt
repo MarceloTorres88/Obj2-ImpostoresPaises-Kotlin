@@ -1,4 +1,5 @@
 import ar.edu.unahur.obj2.impostoresPaises.Observatorio
+import ar.edu.unahur.obj2.impostoresPaises.Pais
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue

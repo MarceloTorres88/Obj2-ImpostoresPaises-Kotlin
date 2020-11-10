@@ -1,5 +1,7 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
+import javax.naming.event.ObjectChangeListener
+
 object Observatorio {
     val listaPaises = mutableSetOf<Pais>()
 
@@ -36,5 +38,24 @@ object Observatorio {
 
     fun cincoPaisesConMayorPoblacion() = this.listaPaises.sortedBy { it.population }.subList(0,4)
 
-    fun continenteMasPoblado() = this.listaPaises
+    private fun filtrarPorContinente(continente : String) =  this.listaPaises.filter { it.region == continente }
+
+    private fun sumaPoblacionPorContinente(continente: String) = this.filtrarPorContinente(continente).sumBy { it.population }
+
+    fun continenteMasPoblado() : String{
+        val Africa = this.sumaPoblacionPorContinente("Africa")
+        val Americas = this.sumaPoblacionPorContinente("Americas")
+        val Asia = this.sumaPoblacionPorContinente("Asia")
+        val Europe = this.sumaPoblacionPorContinente("Europe")
+        val Oceania = this.sumaPoblacionPorContinente("Oceania")
+
+        val mayorpoblacionPorContiennte = listOf<Int>(Africa,Americas,Asia,Europe,Oceania).maxOf { it }
+        return when {
+            mayorpoblacionPorContiennte == Africa -> "Africa"
+            mayorpoblacionPorContiennte == Americas -> "Americas"
+            mayorpoblacionPorContiennte == Asia -> "Asia"
+            mayorpoblacionPorContiennte == Europe -> "Europe"
+            else -> "Oceania"
+        }
+    }
 }
