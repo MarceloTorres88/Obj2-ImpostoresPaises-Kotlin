@@ -12,14 +12,14 @@ interface Pais {
 
     fun esLimitrofeCon(pais: Pais) = this.borders.contains(pais.alpha3Code)
 
-    fun puedeDialogarCon(pais: Pais) : Boolean{
+    fun necesitaTraductorCon(pais: Pais) : Boolean{
         val aux1 = mutableSetOf<String>()
         val aux2 = mutableSetOf<String>()
 
         this.languages.map{aux1.add(it.name)}
         pais.languages.map{aux2.add(it.name)}
 
-        return aux1.intersect(aux2).isNotEmpty()
+        return aux1.intersect(aux2).isEmpty()
     }
 
     fun comparteBloqueRegionalCon(pais: Pais): Boolean{

@@ -24,21 +24,17 @@ object Observatorio {
         val aux1 = this.encontrarPais(pais1)
         val aux2 = this.encontrarPais(pais2)
 
-        return aux1.puedeDialogarCon(aux2)
+        return aux1.necesitaTraductorCon(aux2)
     }
 
     fun sonPotencialesAliados(pais1: String, pais2: String): Boolean {
         val aux1 = this.encontrarPais(pais1)
         val aux2 = this.encontrarPais(pais2)
 
-        return this.necesitanTraduccion(pais1,pais2) and aux1.comparteBloqueRegionalCon(aux2)
+        return !this.necesitanTraduccion(pais1,pais2) and aux1.comparteBloqueRegionalCon(aux2)
     }
 
-    fun cincoPaisesConMayorPoblacion(): Set<Pais> {
-        return setOf<Pais>()
-    }
+    fun cincoPaisesConMayorPoblacion() = this.listaPaises.sortedBy { it.population }.subList(0,4)
 
-    fun continenteMasPoblado(): String {
-        return "true"
-    }
+    fun continenteMasPoblado() = this.listaPaises
 }
