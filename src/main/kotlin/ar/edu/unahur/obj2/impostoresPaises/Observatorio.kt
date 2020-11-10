@@ -39,7 +39,10 @@ object Observatorio {
         return !this.necesitanTraduccion(pais1,pais2) and aux1.comparteBloqueRegionalCon(aux2)
     }
 
-    fun cincoPaisesConMayorPoblacion() = this.listaPaises.sortedByDescending { it.population }.subList(0,4)
+    fun cincoPaisesConMayorPoblacion(): List<Pais> {
+        val lista = this.listaPaises.sortedByDescending { it.population }
+        return lista.subList(0,5)
+    }
 
     private fun filtrarPorContinente(continente : String) =  this.listaPaises.filter { it.region == continente }
 

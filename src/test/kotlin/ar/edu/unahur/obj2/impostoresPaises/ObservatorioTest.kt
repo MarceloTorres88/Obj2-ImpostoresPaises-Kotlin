@@ -69,13 +69,12 @@ class ObservatorioTest : DescribeSpec({
         describe("cuarto requerimeinto - paises con mayor poblacion"){
             it("nombres de los 5 paises con mayor poblacion"){
                 // no entra panama por menor poblacion de todas
-                val listaResultadoOrdenada = listOf(Argentina,Brasil,Peru,Bolivia,España) // tiene que estar ordenada por poblacion
+                val listaResultadoOrdenada = listOf(Brasil,España,Argentina,Peru,Bolivia) // tiene que estar ordenada por poblacion
                 Observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
             }
             it("agregamos pais con mayor poblacion y cambia lista"){
-                Observatorio.agregarPais(China)
-                //peru se va , 10 M
-                val listaResultadoOrdenada = listOf(Argentina,Brasil,China,Bolivia,España) // tiene que estar ordenada por poblacion
+                Observatorio.agregarPais(China) //Bolivia  se va , 10 M
+                val listaResultadoOrdenada = listOf(China,Brasil,España,Argentina,Peru) // tiene que estar ordenada por poblacion
                 Observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
                 Observatorio.listaPaises.remove(China) // saco el pais para que no interrumpa los otros test
             }
