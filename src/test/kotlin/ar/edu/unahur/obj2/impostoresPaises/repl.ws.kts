@@ -5,8 +5,18 @@ import ar.edu.unahur.obj2.impostoresPaises.RestCountriesAPI
 
 val api = RestCountriesAPI()
 
-api.buscarPaisesPorNombre("guay")
+api.buscarPaisesPorNombre("brazil")
 
-api.paisConCodigo("CHL")
+api.paisConCodigo("PER")
+
+api.paisConCodigo("ARG")
+
+api.paisConCodigo("BOL")
+
+api.buscarPaisesPorNombre("panama")
+
+api.buscarPaisesPorNombre("spa")
+
+api.buscarPaisesPorNombre("china")
 
 // para primer commit
