@@ -33,30 +33,83 @@ interface Pais {
     }
 }
 
-abstract class Lenguaje  {
-    abstract val name: String
-}
+class Lenguaje (val name : String)
 
-abstract class BloqueRegional {
-    abstract val acronym: String
-    abstract val name: String
-}
+class BloqueRegional (val acronym: String,val name: String)
 
 object Argentina : Pais{
-    override val name: String
-        get() = TODO("Not yet implemented")
-    override val alpha3Code: String
-        get() = TODO("Not yet implemented")
-    override val capital: String
-        get() = TODO("Not yet implemented")
-    override val region: String
-        get() = TODO("Not yet implemented")
-    override val population: Int
-        get() = TODO("Not yet implemented")
-    override val borders: List<String>
-        get() = TODO("Not yet implemented")
-    override val languages: List<Lenguaje>
-        get() = TODO("Not yet implemented")
-    override val regionalBlocs: List<BloqueRegional>
-        get() = TODO("Not yet implemented")
+    override val name = "Argentina"
+    override val alpha3Code = "ARG"
+    override val capital = "Buenos Aires"
+    override val region = "Americas"
+    override val population = 43590400
+    override val borders = listOf<String>("BOL", "BRA", "CHL", "PRY", "URY")
+    override val languages = listOf<Lenguaje>(Lenguaje("Spanish"), Lenguaje("Guaraní"))
+    override val regionalBlocs =  listOf<BloqueRegional>(BloqueRegional("USAN","Union of South American Nations"))
+}
+
+object Brasil : Pais{
+    override val name = "Brazil"
+    override val alpha3Code = "BRA"
+    override val capital = "Brasília"
+    override val region = "Americas"
+    override val population = 206135893
+    override val borders = listOf<String>("ARG","BOL","COL", "GUF", "GUY","PRY","PER","SUR","URY","VEN")
+    override val languages = listOf<Lenguaje>(Lenguaje("Portuguese"))
+    override val regionalBlocs =  listOf<BloqueRegional>(BloqueRegional("USAN","Union of South American Nations"))
+}
+
+object Peru : Pais{
+    override val name = "Peru"
+    override val alpha3Code = "PER"
+    override val capital = "Lima"
+    override val region = "Americas"
+    override val population = 31488700
+    override val borders = listOf<String>("BOL", "BRA", "CHL", "COL", "ECU")
+    override val languages = listOf<Lenguaje>(Lenguaje("Spanish"))
+    override val regionalBlocs =  listOf<BloqueRegional>(BloqueRegional("PA","Pacific Alliance"),BloqueRegional("USAN","Union of South American Nations"))
+}
+
+object Bolivia : Pais{
+    override val name = "Bolivia (Plurinational State of)"
+    override val alpha3Code = "BOL"
+    override val capital = "Sucre"
+    override val region = "Americas"
+    override val population = 10985059
+    override val borders = listOf<String>("ARG","BRA","CHL","PRY","PER")
+    override val languages = listOf<Lenguaje>(Lenguaje("Spanish"), Lenguaje("Aymara"), Lenguaje("Quechua"))
+    override val regionalBlocs =  listOf<BloqueRegional>(BloqueRegional("USAN","Union of South American Nations"))
+}
+
+object España : Pais{
+    override val name = "Spain"
+    override val alpha3Code = "ESP"
+    override val capital = "Real Madrid"
+    override val region = "Europe"
+    override val population = 46438022
+    override val borders = listOf<String>("AND","FRA","GIB","PRT","MAR")
+    override val languages = listOf<Lenguaje>(Lenguaje("Spanish"))
+    override val regionalBlocs =  listOf<BloqueRegional>(BloqueRegional("EU","European Union"))
+}
+
+object Panama : Pais{
+    override val name = "Panama"
+    override val alpha3Code = "PAN"
+    override val capital = "Panama City"
+    override val region = "Americas"
+    override val population = 3814672
+    override val borders = listOf<String>("COL","CRI")
+    override val languages = listOf<Lenguaje>(Lenguaje("Spanish"))
+    override val regionalBlocs =  listOf<BloqueRegional>(BloqueRegional("CAIS","Central American Integration System"))
+}
+
+object China : Pais{
+    override val name = "China"
+    override val alpha3Code = "CHN"
+    override val capital = "Beijing"
+    override val region = "Asia"
+    override val population = 1377422166
+    override val borders = listOf<String>("AFG", "BTN", "MMR", "HKG", "IND", "KAZ", "PRK", "KGZ", "LAO", "MAC", "MNG", "PAK", "RUS", "TJK", "VNM")
+    override val languages = listOf<Lenguaje>(Lenguaje("Chinese"))
+    override val regionalBlocs =  listOf<BloqueRegional>(BloqueRegional("EU","European Union"))
 }
