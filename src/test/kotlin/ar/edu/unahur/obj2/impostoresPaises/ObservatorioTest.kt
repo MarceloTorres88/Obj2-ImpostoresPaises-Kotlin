@@ -12,7 +12,7 @@ class ObservatorioTest : DescribeSpec({
         Observatorio.agregarPais(Brasil)
         Observatorio.agregarPais(Peru)
         Observatorio.agregarPais(Bolivia)
-        Observatorio.agregarPais(España)
+        Observatorio.agregarPais(Spain)
         Observatorio.agregarPais(Panama)
 
         describe("Primer requerimiento - Limitrofes ") {
