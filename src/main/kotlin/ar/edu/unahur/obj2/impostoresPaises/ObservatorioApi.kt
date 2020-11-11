@@ -9,6 +9,14 @@ object ObservatorioApi {
         listaPaises.addAll(api.todosLosPaises().map { AdapterCountry(it) })
     }
 
+    fun encontrarPais(pais: String) : Pais {
+        if(!this.listaPaises.any{it.name == pais}){
+            throw error("el pais $pais no esta en la lista")
+        }else{
+            return this.listaPaises.find{it.name == pais}!!
+        }
+    }
+
     fun cincoPaisesConMayorPoblacion(): List<String> {
         val variable = this.listaPaises.sortedByDescending { it.population }.map{it.name}
         return variable.subList(0,5)
@@ -34,6 +42,27 @@ object ObservatorioApi {
             mayorpoblacionPorContiennte == europe -> "Europe"
             else -> "Oceania"
         }
+    }
+
+    fun sonLimitrofes(pais1: String, pais2: String): Boolean {
+        val aux1 = this.encontrarPais(pais1)
+        val aux2 = this.encontrarPais(pais2)
+
+        return aux1.esLimitrofeCon(aux2)
+    }
+
+    fun necesitanTraduccion(pais1: String, pais2: String): Boolean {
+        val aux1 = this.encontrarPais(pais1)
+        val aux2 = this.encontrarPais(pais2)
+
+        return aux1.necesitaTraductorCon(aux2)
+    }
+
+    fun sonPotencialesAliados(pais1: String, pais2: String): Boolean {
+        val aux1 = this.encontrarPais(pais1)
+        val aux2 = this.encontrarPais(pais2)
+
+        return !this.necesitanTraduccion(pais1,pais2) and aux1.comparteBloqueRegionalCon(aux2)
     }
 
 }
