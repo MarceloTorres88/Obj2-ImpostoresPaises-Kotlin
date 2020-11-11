@@ -9,8 +9,8 @@ class ObservatorioApiTest : DescribeSpec({
         ObservatorioApi.agregarPaises()
 
         describe("Los cinco paises mas poblados son"){
-                val listaResultadoOrdenada = listOf("China","India","United States of America","Indonesia","Brazil") // tiene que estar ordenada por poblacion
-                ObservatorioApi.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
+            val listaResultadoOrdenada = listOf("China","India","United States of America","Indonesia","Brazil")
+            ObservatorioApi.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
         }
         describe("el continente mas poblado es Asia"){
             ObservatorioApi.continenteMasPoblado().shouldBe("Asia")
