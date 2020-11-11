@@ -10,6 +10,15 @@ class ObservatorioApiTest : DescribeSpec({
 
         ObservatorioApi.agregarPaises()
 
+        describe("Los cinco paises mas poblados son"){
+            val listaResultadoOrdenada =
+                kotlin.collections.listOf("China", "India", "United States of America", "Indonesia", "Brazil")
+            ar.edu.unahur.obj2.impostoresPaises.ObservatorioApi.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
+        }
+        describe("el continente mas poblado es Asia"){
+            ObservatorioApi.continenteMasPoblado().shouldBe("Asia")
+        }
+
         describe("Primer requerimiento - Limitrofes ") {
             it("son limitrofes") {
                 ObservatorioApi.sonLimitrofes("Argentina", "Brazil").shouldBeTrue()
@@ -60,14 +69,5 @@ class ObservatorioApiTest : DescribeSpec({
                 ObservatorioApi.sonPotencialesAliados("Spain","Argentina").shouldBeFalse()
             }
         }
-
-        describe("Los cinco paises mas poblados son"){
-            val listaResultadoOrdenada = listOf("China","India","United States of America","Indonesia","Brazil")
-            ObservatorioApi.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
-        }
-        describe("el continente mas poblado es Asia"){
-            ObservatorioApi.continenteMasPoblado().shouldBe("Asia")
-        }
-
     }
 })
