@@ -19,9 +19,3 @@ api.buscarPaisesPorNombre("panama")
 api.buscarPaisesPorNombre("spa")
 
 api.buscarPaisesPorNombre("china")
-
-// para primer commit
-
-val asdf = listOf<Pais>()
-
-asdf.sumBy { it.population }.toString()

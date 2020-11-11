@@ -27,10 +27,10 @@ class RestCountriesAPI {
   fun buscarPaisesPorNombre(nombre: String) =
     obtenerRespuesta("/name/${nombre}", countriesAdapter).orEmpty()
 
-  fun paisConCodigo(codigoIso3: String) =
+  fun paisConCodigo(alpha3Code: String) =
     checkNotNull(
-      obtenerRespuesta("/alpha/${codigoIso3}", countryAdapter),
-      { "No se encontró ningún país con el código $codigoIso3" }
+      obtenerRespuesta("/alpha/${alpha3Code}", countryAdapter),
+      { "No se encontró ningún país con el código $alpha3Code" }
     )
 
   private fun <T> obtenerRespuesta(ruta: String, adapter: JsonAdapter<T>): T? {

@@ -33,9 +33,9 @@ interface Pais {
     }
 }
 
-class Languages (val name : String)
+//class Languages (val name : String)
 
-class RegionalBlocs (val acronym: String, val name: String)
+//class RegionalBlocs (val acronym: String, val name: String)
 
 object Argentina : Pais{
     override val name = "Argentina"

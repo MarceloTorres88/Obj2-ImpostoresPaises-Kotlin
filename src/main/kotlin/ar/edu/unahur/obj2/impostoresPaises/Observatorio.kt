@@ -1,27 +1,18 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-import javax.naming.event.ObjectChangeListener
-
 object Observatorio {
-    val api = RestCountriesAPI() //Aca esta la api
-
-    val listaPaises = mutableSetOf<Pais>() // esto va a desaparecer cuando implemente api
-
-    // este metodo tiene que cambiar su procesamiento para que le pegue a la api y traiga el pais
-//    private fun encontrarPais(pais: String) : Pais {
-//        if(!this.listaPaises.any{it.name == pais}){
-//            throw error("el pais $pais no esta en la lista") // o mejorar el texto del error como convenga
-//        }else{
-//            return this.listaPaises.find{it.name == pais}!!
-//        }
-//    }
+    val listaPaises = mutableSetOf<Pais>()
 
     private fun encontrarPais(pais: String) : Pais {
-       return api.buscarPaisesPorNombre(pais) // aca ponerle el adapter
+        if(!this.listaPaises.any{it.name == pais}){
+            throw error("el pais $pais no esta en la lista")
+        }else{
+            return this.listaPaises.find{it.name == pais}!!
+        }
     }
 
-    fun agregarPais(pais: Pais) { // esto va a desaparecer cuando implemente api
-        this.listaPaises.add(pais)
+    fun agregarPais(pais: Pais) {
+                this.listaPaises.add(pais)
     }
 
     fun sonLimitrofes(pais1: String, pais2: String): Boolean {
@@ -45,9 +36,9 @@ object Observatorio {
         return !this.necesitanTraduccion(pais1,pais2) and aux1.comparteBloqueRegionalCon(aux2)
     }
 
-    fun cincoPaisesConMayorPoblacion(): List<Pais> {
-        val lista = this.listaPaises.sortedByDescending { it.population }
-        return lista.subList(0,5)
+    fun cincoPaisesConMayorPoblacion(): List<String> {
+        val variable = this.listaPaises.sortedByDescending { it.population }.map{it.name}
+        return variable.subList(0,5)
     }
 
     private fun filtrarPorContinente(continente : String) =  this.listaPaises.filter { it.region == continente }
@@ -55,18 +46,18 @@ object Observatorio {
     private fun sumaPoblacionPorContinente(continente: String) = this.filtrarPorContinente(continente).sumBy { it.population }
 
     fun continenteMasPoblado() : String{
-        val Africa = this.sumaPoblacionPorContinente("Africa")
-        val Americas = this.sumaPoblacionPorContinente("Americas")
-        val Asia = this.sumaPoblacionPorContinente("Asia")
-        val Europe = this.sumaPoblacionPorContinente("Europe")
-        val Oceania = this.sumaPoblacionPorContinente("Oceania")
+        val africa = this.sumaPoblacionPorContinente("Africa")
+        val americas = this.sumaPoblacionPorContinente("Americas")
+        val asia = this.sumaPoblacionPorContinente("Asia")
+        val europe = this.sumaPoblacionPorContinente("Europe")
+        val oceania = this.sumaPoblacionPorContinente("Oceania")
 
-        val mayorpoblacionPorContiennte = listOf<Int>(Africa,Americas,Asia,Europe,Oceania).maxOf { it }
+        val mayorpoblacionPorContiennte = listOf(africa,americas,asia,europe,oceania).maxOf { it }
         return when {
-            mayorpoblacionPorContiennte == Africa -> "Africa"
-            mayorpoblacionPorContiennte == Americas -> "Americas"
-            mayorpoblacionPorContiennte == Asia -> "Asia"
-            mayorpoblacionPorContiennte == Europe -> "Europe"
+            mayorpoblacionPorContiennte == africa -> "Africa"
+            mayorpoblacionPorContiennte == americas -> "Americas"
+            mayorpoblacionPorContiennte == asia -> "Asia"
+            mayorpoblacionPorContiennte == europe -> "Europe"
             else -> "Oceania"
         }
     }
