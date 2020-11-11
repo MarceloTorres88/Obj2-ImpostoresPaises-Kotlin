@@ -3,15 +3,21 @@ package ar.edu.unahur.obj2.impostoresPaises
 import javax.naming.event.ObjectChangeListener
 
 object Observatorio {
+    val api = RestCountriesAPI() //Aca esta la api
+
     val listaPaises = mutableSetOf<Pais>() // esto va a desaparecer cuando implemente api
 
     // este metodo tiene que cambiar su procesamiento para que le pegue a la api y traiga el pais
+//    private fun encontrarPais(pais: String) : Pais {
+//        if(!this.listaPaises.any{it.name == pais}){
+//            throw error("el pais $pais no esta en la lista") // o mejorar el texto del error como convenga
+//        }else{
+//            return this.listaPaises.find{it.name == pais}!!
+//        }
+//    }
+
     private fun encontrarPais(pais: String) : Pais {
-        if(!this.listaPaises.any{it.name == pais}){
-            throw error("el pais $pais no esta en la lista") // o mejorar el texto del error como convenga
-        }else{
-            return this.listaPaises.find{it.name == pais}!!
-        }
+       return api.buscarPaisesPorNombre(pais) // aca ponerle el adapter
     }
 
     fun agregarPais(pais: Pais) { // esto va a desaparecer cuando implemente api
