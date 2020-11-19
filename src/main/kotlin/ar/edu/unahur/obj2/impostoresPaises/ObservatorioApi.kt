@@ -4,7 +4,7 @@ object ObservatorioApi {
 
     var api = RestCountriesAPI()
 
-    val listaPaises = mutableSetOf<Pais>()
+    var listaPaises = mutableSetOf<Pais>()
 
     fun agregarPaises(){
         listaPaises.addAll(api.todosLosPaises().map { AdapterCountry(it) })
