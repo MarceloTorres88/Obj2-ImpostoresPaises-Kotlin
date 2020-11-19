@@ -37,7 +37,7 @@ idiomasOficiales: ["Español", "Quechua", "Aymara"]
 
 ## Requerimientos
 
-Dividimos los requerimientos en 3 étapas distintas, que deben ser respetadas
+Dividimos los requerimientos en 3 étapas distintas, que deben ser respetadas. El ejercicio está planteado de esta manera para que el diseño les quede más prolijo y desacoplado.
 
 ### Etapa 1 - consultas
 
@@ -60,9 +60,9 @@ Obviamente, para esta etapa hay que incluir todos los tests correspondientes.
 
 ### Etapa 2 - Conectando con el mundo real
 
-Queremos ahora modificar al observatorio para que pueda resolver todos los requerimientos anteriores, pero esta vez interactuando con la [API RestCountries](http://restcountries.eu/). Esta [API](https://es.wikipedia.org/wiki/Interfaz_de_programaci%C3%B3n_de_aplicaciones) es un servicio gratuito que brinda información real sobre los países del mundo
+Queremos ahora modificar al observatorio para que pueda resolver todos los requerimientos anteriores, pero esta vez interactuando con la [API RestCountries](http://restcountries.eu/). Esta [API](https://es.wikipedia.org/wiki/Interfaz_de_programaci%C3%B3n_de_aplicaciones) es un servicio gratuito que brinda información real sobre los países del mundo.
 
-Se provee para ello la clase `RestCountriesAPI`, que provee tres métodos para hacer consultas:
+Para facilitarles la interacción con dicho servicio y que no tengan que preocuparse por cuestiones propias de la interacción HTTP, les dejamos la clase `RestCountriesAPI`, que provee tres métodos para hacer consultas:
 
 ```kotlin
 // Devuelve una lista con todos los países del mundo.
@@ -87,9 +87,27 @@ Se pide entonces:
 
 ### Etapa 3 - API impostora
 
-Los tests de la etapa anterior tienen un gran problema - cada vez que los ejecutamos hacen varios llamados a la API. Esto, además de ser bastante más lento que un test "puro", tiene otras desventajas: no podemos correr los tests sin acceso a internet, nos acopla fuertemente con una servicio externo, no podemos decidir sobre los datos, etc.
+Los tests de la etapa anterior tienen un gran problema - cada vez que los ejecutamos hacen varios llamados a la API. Esto, además de ser bastante más lento que un test "puro", tiene otras desventajas: no podemos correr los tests sin acceso a internet, nos acopla fuertemente con un servicio externo, no podemos decidir sobre los datos, etc.
 
 Para solucionar esto, se pide modificar todos los tests que utilicen la API, reemplazandola por un impostor implementado con [mockk](https://mockk.io/).
+
+### Etapa 4 - Usando la aplicación
+
+Llegó el momento de realmente conectar a nuestro programa con el mundo real, permitiendo que "cualquier persona" (que tenga una computadora, Kotlin y los conocimientos necesarios para ejecutarlo) pueda utilizarlo.
+
+Para ello, vamos a programar una pequeña CLI, _command line interface_ o _interfaz por línea de comandos_, que nos permita acceder a los requerimientos de la etapa 1, trayendo la información de la RestCountries API. El diseño de la interfaz queda librado a su creatividad, siempre y cuando cumpla con los siguientes requerimientos:
+
+1. Deben poder realizarse todas las consultas de la etapa 1, interactuando con la API real.
+1. En caso de error, hay que mostrar algún mensaje amigable.
+1. Incluir al menos un test por cada opción que tenga el CLI, y alguno donde se muestre un error. Simular la interacción de usuario utilizando mockk.
+
+A modo de ejemplo, les dejamos unos GIFs mostrando podría ser la interacción:
+
+_Caso feliz :smiley:_
+![CLI](assets/cli.gif)
+
+_Error :cry:_
+![CLI error](assets/cli-error.gif)
 
 ## Créditos
 
