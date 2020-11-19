@@ -4,28 +4,29 @@ object ObservatorioApi {
 
     var api = RestCountriesAPI()
 
-    var listaPaises = mutableSetOf<Pais>()
+//    var listaPaises = mutableSetOf<Pais>()
 
-    fun agregarPaises(){
-        listaPaises.addAll(api.todosLosPaises().map { AdapterCountry(it) })
-    }
+//    fun agregarPaises(){
+//        listaPaises.addAll(api.todosLosPaises().map { AdapterCountry(it) })
+//    }
 
-    init { this.agregarPaises() }
+//    init { this.agregarPaises() }
 
     fun encontrarPais(pais: String) : Pais {
-        if(!this.listaPaises.any{it.name == pais}){
-            throw error("el pais $pais no esta en la lista")
-        }else{
-            return this.listaPaises.find{it.name == pais}!!
-        }
+        return  AdapterCountry (api.buscarPaisesPorNombre(pais).first())
+//        if(!this.listaPaises.any{it.name == pais}){
+//            throw error("el pais $pais no esta en la lista")
+//        }else{
+//            return this.listaPaises.find{it.name == pais}!!
+//        }
     }
 
     fun cincoPaisesConMayorPoblacion(): List<String> {
-        val variable = this.listaPaises.sortedByDescending { it.population }.map{it.name}
+        val variable = api.todosLosPaises().sortedByDescending { it.population }.map{it.name}
         return variable.subList(0,5)
     }
 
-    private fun filtrarPorContinente(continente : String) =  this.listaPaises.filter { it.region == continente }
+    private fun filtrarPorContinente(continente : String) =  api.todosLosPaises().filter { it.region == continente }
 
     private fun sumaPoblacionPorContinente(continente: String) = this.filtrarPorContinente(continente).sumOf{ it.population.toLong() }
 

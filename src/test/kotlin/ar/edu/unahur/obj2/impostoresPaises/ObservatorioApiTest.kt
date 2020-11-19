@@ -8,7 +8,6 @@ class ObservatorioApiTest : DescribeSpec({
 
     describe("segunda etapa Etapa"){
         ObservatorioApi.api = RestCountriesAPI()
-        ObservatorioApi.listaPaises= mutableSetOf<Pais>()
 
 
         describe("Primer requerimiento - Limitrofes ") {

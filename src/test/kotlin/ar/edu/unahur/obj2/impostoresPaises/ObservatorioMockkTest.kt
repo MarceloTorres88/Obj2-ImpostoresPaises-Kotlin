@@ -13,7 +13,6 @@ class ObservatorioMockkTest : DescribeSpec({
         val paisesMokeados = mutableSetOf(Argentina,Brasil,Bolivia,Peru,Spain)
 
         ObservatorioApi.api = mockk<RestCountriesAPI>()
-        ObservatorioApi.listaPaises = paisesMokeados
         // aun asi la lista de paises mokeados se tiene que pasar por un every . lo de arriba es todo como para
         // encaminarlo , paro no se como hacerlo.
         // todavia no entiendo bien donde mockear , como y a que objeto.
