@@ -2,7 +2,7 @@ package ar.edu.unahur.obj2.impostoresPaises
 
 object ObservatorioApi {
 
-    private val api = RestCountriesAPI()
+    var api = RestCountriesAPI()
 
     val listaPaises = mutableSetOf<Pais>()
 
@@ -10,10 +10,8 @@ object ObservatorioApi {
         listaPaises.addAll(api.todosLosPaises().map { AdapterCountry(it) })
     }
 
-    init { this.agregarPaises() } // no se por que , pero arriba  de todo no me lo levanta . quizas la funcion no estaba creada.
+    init { this.agregarPaises() }
 
-    // lo que decia el profe , no es asi. en el metodo anterior se cargan todos los paises , y en este se buscan solo los 2 paises
-    //necesarios. no se cargan todos los paises cada vez que se ejecuta un metodo
     fun encontrarPais(pais: String) : Pais {
         if(!this.listaPaises.any{it.name == pais}){
             throw error("el pais $pais no esta en la lista")
@@ -30,6 +28,7 @@ object ObservatorioApi {
     private fun filtrarPorContinente(continente : String) =  this.listaPaises.filter { it.region == continente }
 
     private fun sumaPoblacionPorContinente(continente: String) = this.filtrarPorContinente(continente).sumOf{ it.population.toLong() }
+
 
     fun continenteMasPoblado() : String{
         val africa = this.sumaPoblacionPorContinente("Africa")

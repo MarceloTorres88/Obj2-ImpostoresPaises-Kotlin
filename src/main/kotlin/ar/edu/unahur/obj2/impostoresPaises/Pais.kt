@@ -115,7 +115,7 @@ class AdapterCountry(country: Country) : Pais {
     override val alpha3Code: String = country.alpha3Code
     override val capital: String=country.capital
     override val region: String=country.region
-    override val population: Int=country.population
+    override val population: Int= country.population.toInt()
     override val borders: List<String> = country.borders
     override val languages: List<Language> = country.languages
     override val regionalBlocs: List<RegionalBloc> = country.regionalBlocs

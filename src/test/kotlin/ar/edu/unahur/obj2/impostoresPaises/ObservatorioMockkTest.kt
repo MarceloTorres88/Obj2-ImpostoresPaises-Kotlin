@@ -1,13 +1,21 @@
-import ar.edu.unahur.obj2.impostoresPaises.*
+package ar.edu.unahur.obj2.impostoresPaises
+
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
+import io.mockk.every
+import io.mockk.mockk
 
-class ObservatorioApiTest : DescribeSpec({
+class ObservatorioMockkTest : DescribeSpec({
 
-    describe("segunda etapa Etapa"){
-        ObservatorioApi.api = RestCountriesAPI()
+    describe("tercera etapa etapa Etapa"){
+//        ObservatorioApi.api = mockk<RestCountriesAPI>()
+
+//        every { ObservatorioApi.encontrarPais("Argentina") } returns Argentina
+//        every { ObservatorioApi.encontrarPais("Brazil") } returns Brasil
+//        every { ObservatorioApi.encontrarPais("Peru") } returns Peru
+//        every { ObservatorioApi.encontrarPais("Spain") } returns Spain
 
 
         describe("Primer requerimiento - Limitrofes ") {
