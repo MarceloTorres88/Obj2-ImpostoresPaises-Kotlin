@@ -16,15 +16,49 @@ class ObservatorioMockkTest : DescribeSpec({
         // todavia no entiendo bien donde mockear , como y a que objeto.
 
 
-        every { ObservatorioApi.encontrarPais("Argentina") } returns Argentina
-        every { ObservatorioApi.encontrarPais("Brazil") } returns Brasil
+        every { ObservatorioApi.api.buscarPaisesPorNombre("Argentina") } returns listOf(Country(
+            "Argentina",
+            "ARG",
+            "Buenos Aires",
+            "Americas",
+            43590400,
+            listOf("BOL", "BRA", "CHL", "PRY", "URY"),
+            listOf(Language("Spanish"),Language("Guaraní")),
+            listOf(RegionalBloc("USAN","Union of South American Nations"))
+            ))
+
+        every { ObservatorioApi.api.buscarPaisesPorNombre("Brazil") } returns listOf(Country(
+            "Brazil",
+            "BRA",
+            "Brasília Aires",
+            "Americas",
+            206135893,
+            listOf("ARG", "BOL", "COL", "GUF", "GUY", "PRY", "PER", "SUR", "URY", "VEN"),
+            listOf(Language("Portuguese")),
+            listOf(RegionalBloc("USAN","Union of South American Nations"))
+        ))
+
+        // aca devuelvo el objeto Country y no anda
+
+
+
         every { ObservatorioApi.encontrarPais("Bolivia (Plurinational State of)") } returns Bolivia
         every { ObservatorioApi.encontrarPais("Peru") } returns Peru
         every { ObservatorioApi.encontrarPais("Spain") } returns Spain
 
+        // aca devuelvo el objeto Pais y tampoco
+
+        // el tema es que el error dice :
+//        java.util.NoSuchElementException: List is empty.
+//        at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:212)
+//        at ar.edu.unahur.obj2.impostoresPaises.ObservatorioApi.encontrarPais(ObservatorioApi.kt:16)
+
 
         describe("Primer requerimiento - Limitrofes ") {
             it("son limitrofes") {
+//                every { ObservatorioApi.encontrarPais("Argentina") } returns Argentina
+//                every { ObservatorioApi.encontrarPais("Brazil") } returns Brasil
+
                 ObservatorioApi.sonLimitrofes("Argentina", "Brazil").shouldBeTrue()
             }
             it("son limitrofes - inverso") {
