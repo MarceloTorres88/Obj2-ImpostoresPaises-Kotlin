@@ -4,6 +4,11 @@ object ObservatorioApi {
 
     var api = RestCountriesAPI()
 
+    // ver de SI utilizar el modo con lista de paises tratando de utilizar el " lazy val " para no iniciar algo hasta no ser llamado. EJ:
+//    val test: String by lazy {
+//        "some value" // esto no se ejecuta hasta que alguien use el valor test
+//    }
+
 //    var listaPaises = mutableSetOf<Pais>()
 
 //    fun agregarPaises(){

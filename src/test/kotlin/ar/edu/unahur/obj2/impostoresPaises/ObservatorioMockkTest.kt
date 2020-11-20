@@ -8,15 +8,17 @@ import io.mockk.every
 import io.mockk.mockk
 
 class ObservatorioMockkTest : DescribeSpec({
+    val api = mockk<RestCountriesAPI>()
+    ObservatorioApi.api = api
 
     describe("tercera etapa etapa Etapa"){
-        ObservatorioApi.api = mockk<RestCountriesAPI>()
+
         // aun asi la lista de paises mokeados se tiene que pasar por un every . lo de arriba es todo como para
         // encaminarlo , paro no se como hacerlo.
         // todavia no entiendo bien donde mockear , como y a que objeto.
 
 
-        every { ObservatorioApi.api.buscarPaisesPorNombre("Argentina") } returns listOf(Country(
+        every { api.buscarPaisesPorNombre("Argentina") } returns listOf(Country(
             "Argentina",
             "ARG",
             "Buenos Aires",
@@ -27,7 +29,7 @@ class ObservatorioMockkTest : DescribeSpec({
             listOf(RegionalBloc("USAN","Union of South American Nations"))
             ))
 
-        every { ObservatorioApi.api.buscarPaisesPorNombre("Brazil") } returns listOf(Country(
+        every { api.buscarPaisesPorNombre("Brazil") } returns listOf(Country(
             "Brazil",
             "BRA",
             "Brasília Aires",
