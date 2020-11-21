@@ -16,7 +16,7 @@ fun main () {
             Opcion.opcion == 4 -> opcionDosTresCuatro()
             Opcion.opcion == 5 -> quintaOpcion()
             Opcion.opcion == 6 -> sextaOpcion()
-            else -> errorReingrese()
+            else -> errorReingresoMenu()
         }
     }
     println("¡Gracias por usar nuestro programa!")
@@ -30,10 +30,16 @@ fun menu(){ // puse esto para que no se repita 700 veces estas lineas
 
 fun primeraOpcion() {
     println("Ingrese el nombre de un pais")
-    val pais1 = ObservatorioApi.encontrarPais(readLine()!!) // le pide ala api por strin el pais
-    // aca poner comprobacion de que si existe el pais o no se escribio bien. reingresar
-    println("El pais ${pais1.name} tiene ${pais1.population} habitantes y habla ${pais1.languages} idiomas"+"\n")
-    volverAlMenu()
+    try { // intenta buscar el pais e imprimir la informacion
+        val pais1 = ObservatorioApi.encontrarPais(readLine()!!)
+        println("El pais ${pais1.name} tiene ${pais1.population} habitantes y habla ${pais1.languages} idiomas"+"\n")
+    }
+    catch (e: Exception){ // si hay error lo dice
+        println("No existe tal pais. Volvemos al menu.")
+    }
+    finally {// sale al menu.
+        volverAlMenu()
+    }
 }
 
 //fun segundaOpcion() {
@@ -70,19 +76,31 @@ fun opcionDosTresCuatro(){
     println("Ingrese el nombre de un pais")
     val pais1  = readLine()!!
     println("Ingrese el nombre de otro un pais")
-    val pais2 = readLine()!!
-    // comprobacion de que ambos existen y que no son el mismo. reingresar
-    println("los paises $pais1 y $pais2 "+
+    var pais2 = readLine()!!
+    while (pais2 == pais1){
+        println("No se puede comparar un pais con sigo mismo."+"\n"+"Ingrese el nombre de otro pais.")
+        pais2 = readLine()!!
+    }
+    // comprobacion de que ambos existen. reingresar
+    try {
+        println("los paises $pais1 y $pais2 "+ // aca hice magia , y con el mismo metodo , meti las 3 opciones.
                 when{
                     Opcion.opcion == 2 -> if(ObservatorioApi.sonLimitrofes(pais1,pais2)){"si"}else{"no"}+ " son limitrofes."+"\n"
                     Opcion.opcion == 3 -> if(ObservatorioApi.necesitanTraduccion(pais1,pais2)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
                     else -> if(ObservatorioApi.sonPotencialesAliados(pais1,pais2)){""}else{"no"}+ " son potenciales aliados."+"\n"
                 })
-    volverAlMenu()
+    }
+    catch (e: Exception){
+        println("Algo malio sal.")
+    }
+    finally {
+        volverAlMenu()
+    }
 }
 
 fun quintaOpcion() {
     val listaPaises = ObservatorioApi.cincoPaisesConMayorPoblacion()
+    // lista los paises con salto de linea.
     println("Los 5 paises con mayor poblacion son:"+"\n"+ listaPaises.get(0) +"\n"+ listaPaises.get(1) +
             "\n"+ listaPaises.get(2) +"\n"+ listaPaises.get(3) +"\n"+ listaPaises.get(4) +"\n")
     volverAlMenu()
@@ -93,7 +111,7 @@ fun sextaOpcion() {
     volverAlMenu()
 }
 
-fun errorReingrese() {
+fun errorReingresoMenu() {
     println("Error al ingreso de datos."+"\n"+"Ingrese nuevamente"+"\n")
     Opcion.opcion = readLine()!!.toInt()
 }
