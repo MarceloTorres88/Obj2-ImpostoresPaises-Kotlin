@@ -1,5 +1,7 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
+import okhttp3.internal.wait
+
 object Opcion{ // solo para guardar un numero y que sea alcanzable por todas las opciones
     var opcion = 0
 }
@@ -7,19 +9,26 @@ object Opcion{ // solo para guardar un numero y que sea alcanzable por todas las
 
 fun main () {
     menu()
-    Opcion.opcion = readLine()!!.toInt() // ingresa el valor
-    while (Opcion.opcion != 0){ // con esto se queda en el menu resolviendo todas las consultas que quiera hasta que tiren el 0
-        when {
-            Opcion.opcion == 1 -> primeraOpcion()
-            Opcion.opcion == 2 -> opcionDosTresCuatro()
-            Opcion.opcion == 3 -> opcionDosTresCuatro()
-            Opcion.opcion == 4 -> opcionDosTresCuatro()
-            Opcion.opcion == 5 -> quintaOpcion()
-            Opcion.opcion == 6 -> sextaOpcion()
-            else -> errorReingresoMenu()
+    try {
+        Opcion.opcion = readLine()!!.toInt() // ingresa el valor
+        while (Opcion.opcion != 0){ // con esto se queda en el menu resolviendo todas las consultas que quiera hasta que tiren el 0
+            when {
+                Opcion.opcion == 1 -> primeraOpcion()
+                Opcion.opcion == 2 -> opcionDosTresCuatro()
+                Opcion.opcion == 3 -> opcionDosTresCuatro()
+                Opcion.opcion == 4 -> opcionDosTresCuatro()
+                Opcion.opcion == 5 -> quintaOpcion()
+                Opcion.opcion == 6 -> sextaOpcion()
+                else -> errorReingresoMenu()
+            }
         }
     }
-    println("¡Gracias por usar nuestro programa!")
+    catch (e: Exception){
+        println("El menu se maneja solo con numeros.")
+    }
+    finally {
+        println("¡Gracias por usar nuestro programa!")
+    }
 } // aca termina el programa
 
 fun menu(){ // puse esto para que no se repita 700 veces estas lineas
@@ -91,7 +100,7 @@ fun opcionDosTresCuatro(){
                 })
     }
     catch (e: Exception){
-        println("Algo malio sal.")
+        println("Algo salio mal.")
     }
     finally {
         volverAlMenu()
