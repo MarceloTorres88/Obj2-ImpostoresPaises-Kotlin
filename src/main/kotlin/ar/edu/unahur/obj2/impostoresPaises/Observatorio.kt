@@ -33,7 +33,7 @@ object Observatorio {
         val aux1 = this.encontrarPais(pais1)
         val aux2 = this.encontrarPais(pais2)
 
-        return !this.necesitanTraduccion(pais1,pais2) and aux1.comparteBloqueRegionalCon(aux2)
+        return aux1.sonPotencialesAliados(aux2)
     }
 
     fun cincoPaisesConMayorPoblacion(): List<String> {

@@ -31,6 +31,8 @@ interface Pais {
 
         return aux1.intersect(aux2).isNotEmpty()
     }
+
+    fun sonPotencialesAliados(pais: Pais) = this.comparteBloqueRegionalCon(pais) and !this.necesitaTraductorCon(pais)
 }
 
 object Argentina : Pais{
