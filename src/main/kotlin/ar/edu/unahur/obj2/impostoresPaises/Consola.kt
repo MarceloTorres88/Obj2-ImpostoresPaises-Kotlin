@@ -1,7 +1,5 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-import kotlin.math.ln1p
-
 object Opcion{ // solo para guardar un numero y que sea alcanzable por todas las opciones
     var opcion = 0
 }
@@ -34,7 +32,7 @@ fun primeraOpcion() {
     println("Ingrese el nombre de un pais")
     val pais1 = ObservatorioApi.encontrarPais(readLine()!!) // le pide ala api por strin el pais
     // aca poner comprobacion de que si existe el pais o no se escribio bien. reingresar
-    println("El pais ${pais1.name} tiene ${pais1.population} habitantes y habla ${pais1.languages.toString()} idiomas"+"\n")
+    println("El pais ${pais1.name} tiene ${pais1.population} habitantes y habla ${pais1.languages} idiomas"+"\n")
     volverAlMenu()
 }
 
@@ -85,8 +83,8 @@ fun opcionDosTresCuatro(){
 
 fun quintaOpcion() {
     val listaPaises = ObservatorioApi.cincoPaisesConMayorPoblacion()
-    println("Los 5 paises con mayor poblacion son:"+"\n"+"${listaPaises.get(0)}"+"\n"+"${listaPaises.get(1)}"+
-            "\n"+"${listaPaises.get(2)}"+"\n"+"${listaPaises.get(3)}"+"\n"+"${listaPaises.get(4)}"+"\n")
+    println("Los 5 paises con mayor poblacion son:"+"\n"+ listaPaises.get(0) +"\n"+ listaPaises.get(1) +
+            "\n"+ listaPaises.get(2) +"\n"+ listaPaises.get(3) +"\n"+ listaPaises.get(4) +"\n")
     volverAlMenu()
 }
 
