@@ -2,27 +2,28 @@ package ar.edu.unahur.obj2.impostoresPaises
 
 class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
 
-    val listaPaises = mutableSetOf<Pais>()
+//    val listaPaises = mutableSetOf<Pais>()
+//
+//    fun agregarPaises(){
+//        listaPaises.addAll(api.todosLosPaises().map { AdapterCountry(it) })
+//    }
+//
+//    init { this.agregarPaises() }
 
-    fun agregarPaises(){
-        listaPaises.addAll(api.todosLosPaises().map { AdapterCountry(it) })
-    }
+    fun encontrarPais(pais: String) : Pais = api.buscarPaisesPorNombre(pais).map { AdapterCountry(it) }.first()
+//    {
+//        if(!this.listaPaises.any{it.name.contains(pais)}){
+//            throw error("el pais $pais no esta en la lista")
+//        }else{
+//            return this.listaPaises.find{it.name.contains(pais)}!!
+//        }
+//    }
 
-    init { this.agregarPaises() }
-
-    fun encontrarPais(pais: String) : Pais {
-        if(!this.listaPaises.any{it.name.contains(pais)}){
-            throw error("el pais $pais no esta en la lista")
-        }else{
-            return this.listaPaises.find{it.name.contains(pais)}!!
-        }
-    }
-
-    fun cincoPaisesConMayorPoblacion()= this.listaPaises.sortedByDescending { it.population }.map{it.name}.take(5)
+    fun cincoPaisesConMayorPoblacion()= api.todosLosPaises().sortedByDescending { it.population }.map{it.name}.take(5)
 
 
     fun continenteMasPoblado() : String =
-        this.listaPaises.groupBy { it.region }. // agrupo paises por contienete
+        api.todosLosPaises().groupBy { it.region }. // agrupo paises por contienete
         mapValues{ pais -> pais.value.sumOf { it.population }}. // sumo las poblaciones de los paises en cada contiente
         maxByOrNull { it.value }!!.key // devuelvo la key del continente mas poblado
 
