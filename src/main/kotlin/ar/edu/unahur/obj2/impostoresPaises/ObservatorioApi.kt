@@ -25,9 +25,10 @@ class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
     }
 
     fun continenteMasPoblado() : String =
-        api.todosLosPaises().groupBy { it.region }
-            .mapValues { entry -> entry.value.sumOf { it.population }
-                .toFloat()  }.map { it.key }.first()
+        api.todosLosPaises().groupBy { it.region }. // agrupo paises por contienete
+        mapValues{ pais -> pais.value.sumOf { it.population }}. // sumo las poblaciones de los paises en cada contiente
+        maxByOrNull { it.value }!!.key // devuelvo la key del continente mas poblado
+
 
     fun sonLimitrofes(pais1: String, pais2: String): Boolean {
         val aux1 = this.encontrarPais(pais1)

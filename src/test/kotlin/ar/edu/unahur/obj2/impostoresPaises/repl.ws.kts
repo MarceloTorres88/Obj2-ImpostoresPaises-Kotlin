@@ -18,7 +18,13 @@ api.buscarPaisesPorNombre("spa")
 
 api.buscarPaisesPorNombre("china")
 
-val a = api.todosLosPaises().groupBy { it.region }.mapValues { entry -> entry.value.sumOf { it.population }.toFloat()  }
+
+
+val a = api.todosLosPaises().groupBy { it.region }.mapValues { entry -> entry.value.sumOf { it.population }}
 
 a
-//map { it.key }
+
+
+val b = api.todosLosPaises().groupBy { it.region }.mapValues{ pais -> pais.value.sumOf { it.population }}.maxByOrNull { it.value }!!.key
+
+b

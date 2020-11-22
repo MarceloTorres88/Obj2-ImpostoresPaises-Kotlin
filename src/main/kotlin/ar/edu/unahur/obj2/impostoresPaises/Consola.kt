@@ -1,6 +1,5 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-import okhttp3.internal.wait
 
 object Opcion{ // solo para guardar un numero y que sea alcanzable por todas las opciones
     var opcion = 0

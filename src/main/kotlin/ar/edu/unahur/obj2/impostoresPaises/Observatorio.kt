@@ -42,9 +42,8 @@ object Observatorio {
     }
 
     fun continenteMasPoblado():String=
-        this.listaPaises.groupBy { it.region }
-            .mapValues { entry -> entry.value.sumOf { it.population }.toFloat()}
-            .map { it.key }
-            .first()
+        this.listaPaises.groupBy { it.region }. // agrupo paises por contienete
+        mapValues{ pais -> pais.value.sumOf { it.population }}. // sumo las poblaciones de los paises en cada contiente
+        maxByOrNull { it.value }!!.key // devuelvo la key del continente mas poblado
 
 }
