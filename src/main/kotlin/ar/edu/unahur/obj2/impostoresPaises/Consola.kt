@@ -14,10 +14,10 @@ object Consola{ // solo para guardar un numero y que sea alcanzable por todas la
 
 
 fun main () {
-    menu()
+    correrMenu()
 }
 
-fun menu(){
+fun correrMenu(){
     menuEscrito()
     try {
         Consola.ingresoOpcionMenu() // ingresa el valor
