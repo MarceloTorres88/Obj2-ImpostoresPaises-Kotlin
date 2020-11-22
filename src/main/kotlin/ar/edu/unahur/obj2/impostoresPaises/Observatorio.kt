@@ -3,6 +3,8 @@ package ar.edu.unahur.obj2.impostoresPaises
 object Observatorio {
     val listaPaises = mutableSetOf<Pais>()
 
+    init { listaPaises.addAll(setOf(Argentina,Brasil,Peru,Bolivia,Spain)) }
+
     private fun encontrarPais(pais: String) : Pais {
         if(!this.listaPaises.any{it.name == pais}){
             throw error("el pais $pais no esta en la lista")

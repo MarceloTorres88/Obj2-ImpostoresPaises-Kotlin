@@ -11,10 +11,10 @@ class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
     init { this.agregarPaises() }
 
     fun encontrarPais(pais: String) : Pais {
-        if(!this.listaPaises.any{it.name == pais}){
+        if(!this.listaPaises.any{it.name.contains(pais)}){
             throw error("el pais $pais no esta en la lista")
         }else{
-            return this.listaPaises.find{it.name == pais}!!
+            return this.listaPaises.find{it.name.contains(pais)}!!
         }
     }
 

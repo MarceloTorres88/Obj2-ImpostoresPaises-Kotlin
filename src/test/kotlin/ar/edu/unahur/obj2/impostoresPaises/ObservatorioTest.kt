@@ -8,12 +8,6 @@ class ObservatorioTest : DescribeSpec({
 
     describe("Primera Etapa"){
 
-        Observatorio.agregarPais(Argentina)
-        Observatorio.agregarPais(Brasil)
-        Observatorio.agregarPais(Peru)
-        Observatorio.agregarPais(Bolivia)
-        Observatorio.agregarPais(Spain)
-
         describe("Primer requerimiento - Limitrofes ") {
             it("son limitrofes") {
                 Observatorio.sonLimitrofes("Argentina", "Brazil").shouldBeTrue()
@@ -67,7 +61,6 @@ class ObservatorioTest : DescribeSpec({
 
         describe("cuarto requerimeinto - paises con mayor poblacion"){
             it("nombres de los 5 paises con mayor poblacion"){
-                // no entra panama por menor poblacion de todas
                 val listaResultadoOrdenada = listOf("Brazil","Spain","Argentina","Peru","Bolivia (Plurinational State of)") // tiene que estar ordenada por poblacion
                 Observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
             }
