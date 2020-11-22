@@ -10,7 +10,6 @@ import io.mockk.mockk
 
 class ObservatorioMockkTest : DescribeSpec({
     val api = mockk<RestCountriesAPI>()
-    val observatorio = ObservatorioApi(api)
 
     every { api.todosLosPaises() } returns listOf(
         Country(
@@ -18,7 +17,7 @@ class ObservatorioMockkTest : DescribeSpec({
             "ARG",
             "Buenos Aires",
             "Americas",
-            43590400,
+            (43590400).toLong(),
             listOf("BOL", "BRA", "CHL", "PRY", "URY"),
             listOf(Language("Spanish"),Language("Guaraní")),
             listOf(RegionalBloc("USAN","Union of South American Nations"))
@@ -28,11 +27,12 @@ class ObservatorioMockkTest : DescribeSpec({
             "BRA",
             "Brasília",
             "Americas",
-            206135893,
+            (206135893).toLong(),
             listOf("ARG","BOL","COL", "GUF", "GUY","PRY","PER","SUR","URY","VEN"),
             listOf(Language("Portuguese")),
             listOf(RegionalBloc("USAN","Union of South American Nations"))
-        ),
+        )
+        ,
         Country(
             "Peru",
             "PER",
@@ -105,6 +105,7 @@ class ObservatorioMockkTest : DescribeSpec({
         )
     )
 
+    val observatorio = ObservatorioApi(api)
 
 
 //    every {api.buscarPaisesPorNombre("Argentina")}returns listOf(
@@ -222,12 +223,12 @@ class ObservatorioMockkTest : DescribeSpec({
                 observatorio.sonPotencialesAliados("Spain","Argentina").shouldBeFalse()
             }
         }
-        describe("Los cinco paises mas poblados son"){
-            val listaResultadoOrdenada = listOf("China", "India", "United States of America", "Indonesia", "Brazil")
-            Observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
-        }
-        describe("el continente mas poblado es Asia"){
-            Observatorio.continenteMasPoblado().shouldBe("Asia")
-        }
+//        describe("Los cinco paises mas poblados son"){
+//            val listaResultadoOrdenada = listOf("China", "India", "United States of America", "Indonesia", "Brazil")
+//            Observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
+//        }
+//        describe("el continente mas poblado es Asia"){
+//            Observatorio.continenteMasPoblado().shouldBe("Asia")
+//        }
     }
 })
