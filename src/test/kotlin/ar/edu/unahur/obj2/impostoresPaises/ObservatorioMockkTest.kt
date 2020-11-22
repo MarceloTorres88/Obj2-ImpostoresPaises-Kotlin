@@ -17,7 +17,7 @@ class ObservatorioMockkTest : DescribeSpec({
             "ARG",
             "Buenos Aires",
             "Americas",
-            (43590400).toLong(),
+            43590400,
             listOf("BOL", "BRA", "CHL", "PRY", "URY"),
             listOf(Language("Spanish"),Language("Guaraní")),
             listOf(RegionalBloc("USAN","Union of South American Nations"))
@@ -27,7 +27,7 @@ class ObservatorioMockkTest : DescribeSpec({
             "BRA",
             "Brasília",
             "Americas",
-            (206135893).toLong(),
+            206135893,
             listOf("ARG","BOL","COL", "GUF", "GUY","PRY","PER","SUR","URY","VEN"),
             listOf(Language("Portuguese")),
             listOf(RegionalBloc("USAN","Union of South American Nations"))
