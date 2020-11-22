@@ -1,25 +1,17 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
 class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
+// Usamos la forma de hacer peticiones a la api por cada requerimiento por sobre
+// la forma de cargar en por init() todos los paises y consultar la lista
+// por que se dificultaba el uso del usuario en la consola, ya que esta requeria que los paises
+// esten escritos exactamente como se llama el pais y no por parte del nombre.
+// EJ: bolivia (caso peticiones api) <-> Bolivia (Plurinational State of) (caso peticiones lista)
 
-//    val listaPaises = mutableSetOf<Pais>()
-//
-//    fun agregarPaises(){
-//        listaPaises.addAll(api.todosLosPaises().map { AdapterCountry(it) })
-//    }
-//
-//    init { this.agregarPaises() }
+    fun encontrarPais(pais: String) : Pais =
+        api.buscarPaisesPorNombre(pais).map { AdapterCountry(it) }.first()
 
-    fun encontrarPais(pais: String) : Pais = api.buscarPaisesPorNombre(pais).map { AdapterCountry(it) }.first()
-//    {
-//        if(!this.listaPaises.any{it.name.contains(pais)}){
-//            throw error("el pais $pais no esta en la lista")
-//        }else{
-//            return this.listaPaises.find{it.name.contains(pais)}!!
-//        }
-//    }
-
-    fun cincoPaisesConMayorPoblacion()= api.todosLosPaises().sortedByDescending { it.population }.map{it.name}.take(5)
+    fun cincoPaisesConMayorPoblacion()=
+        api.todosLosPaises().sortedByDescending { it.population }.map{it.name}.take(5)
 
 
     fun continenteMasPoblado() : String =
