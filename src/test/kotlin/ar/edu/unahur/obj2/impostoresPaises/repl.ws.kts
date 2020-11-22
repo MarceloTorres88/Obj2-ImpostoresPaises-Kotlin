@@ -1,4 +1,5 @@
 
+import ar.edu.unahur.obj2.impostoresPaises.ObservatorioApi
 import ar.edu.unahur.obj2.impostoresPaises.RestCountriesAPI
 
 // Algunos ejemplos para que jueguen un poco
@@ -12,11 +13,16 @@ api.paisConCodigo("PER")
 
 api.paisConCodigo("BOL")
 
-api.buscarPaisesPorNombre("panama")
-
 api.buscarPaisesPorNombre("spa")
 
 api.buscarPaisesPorNombre("china")
+
+api.buscarPaisesPorNombre("India")
+
+api.buscarPaisesPorNombre("united states of america")
+
+api.buscarPaisesPorNombre("indonesia")
+
 
 
 
@@ -25,6 +31,19 @@ val a = api.todosLosPaises().groupBy { it.region }.mapValues { entry -> entry.va
 a
 
 
-val b = api.todosLosPaises().groupBy { it.region }.mapValues{ pais -> pais.value.sumOf { it.population }}.maxByOrNull { it.value }!!.key
+val b = api.todosLosPaises().groupBy { it.region }
+    .mapValues{ pais -> pais.value.sumOf { it.population }}
+    .maxByOrNull { it.value }!!.key
 
 b
+
+val observatorio = ObservatorioApi(api)
+val c = observatorio.listaPaises.groupBy { it.region }
+    .mapValues{ pais -> pais.value.sumOf { it.population }}
+    .maxByOrNull { it.value }!!.key
+
+c
+
+val d = observatorio.listaPaises.count()
+
+d

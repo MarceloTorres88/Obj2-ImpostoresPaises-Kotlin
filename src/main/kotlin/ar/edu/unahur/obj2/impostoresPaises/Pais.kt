@@ -5,7 +5,7 @@ interface Pais {
     val alpha3Code: String
     val capital: String
     val region: String
-    val population: Int
+    val population: Long
     val borders: List<String>
     val languages: List<String>
     val regionalBlocs: List<String>
@@ -40,7 +40,7 @@ object Argentina : Pais{
     override val alpha3Code = "ARG"
     override val capital = "Buenos Aires"
     override val region = "Americas"
-    override val population = 43590400
+    override val population: Long = 43590400
     override val borders = listOf("BOL", "BRA", "CHL", "PRY", "URY")
     override val languages = listOf(Language("Spanish"), Language("Guaraní")).map { it.name }
     override val regionalBlocs =  listOf(RegionalBloc("USAN","Union of South American Nations")).map { it.name }
@@ -51,7 +51,7 @@ object Brasil : Pais{
     override val alpha3Code = "BRA"
     override val capital = "Brasília"
     override val region = "Americas"
-    override val population = 206135893
+    override val population: Long = 206135893
     override val borders = listOf("ARG","BOL","COL", "GUF", "GUY","PRY","PER","SUR","URY","VEN")
     override val languages = listOf(Language("Portuguese")).map { it.name }
     override val regionalBlocs =  listOf(RegionalBloc("USAN","Union of South American Nations")).map { it.name }
@@ -62,7 +62,7 @@ object Peru : Pais{
     override val alpha3Code = "PER"
     override val capital = "Lima"
     override val region = "Americas"
-    override val population = 31488700
+    override val population: Long = 31488700
     override val borders = listOf("BOL", "BRA", "CHL", "COL", "ECU")
     override val languages = listOf(Language("Spanish")).map { it.name }
     override val regionalBlocs =  listOf(RegionalBloc("PA","Pacific Alliance"),RegionalBloc("USAN","Union of South American Nations")).map { it.name }
@@ -73,7 +73,7 @@ object Bolivia : Pais{
     override val alpha3Code = "BOL"
     override val capital = "Sucre"
     override val region = "Americas"
-    override val population = 10985059
+    override val population: Long = 10985059
     override val borders = listOf("ARG","BRA","CHL","PRY","PER")
     override val languages = listOf(Language("Spanish"), Language("Aymara"), Language("Quechua")).map { it.name }
     override val regionalBlocs =  listOf(RegionalBloc("USAN","Union of South American Nations")).map { it.name }
@@ -84,7 +84,7 @@ object Spain : Pais{
     override val alpha3Code = "ESP"
     override val capital = "Real Madrid"
     override val region = "Europe"
-    override val population = 46438022
+    override val population: Long = 46438022
     override val borders = listOf("AND","FRA","GIB","PRT","MAR")
     override val languages = listOf(Language("Spanish")).map { it.name }
     override val regionalBlocs =  listOf(RegionalBloc("EU","European Union")).map { it.name }
@@ -95,7 +95,7 @@ object China : Pais{
     override val alpha3Code = "CHN"
     override val capital = "Beijing"
     override val region = "Asia"
-    override val population = 1377422166
+    override val population: Long = 1377422166
     override val borders = listOf("AFG", "BTN", "MMR", "HKG", "IND", "KAZ", "PRK", "KGZ", "LAO", "MAC", "MNG", "PAK", "RUS", "TJK", "VNM")
     override val languages = listOf(Language("Chinese")).map { it.name }
     override val regionalBlocs =  listOf(RegionalBloc("EU","European Union")).map { it.name }
@@ -107,7 +107,7 @@ class AdapterCountry(country: Country) : Pais {
     override val alpha3Code: String = country.alpha3Code
     override val capital: String=country.capital
     override val region: String=country.region
-    override val population: Int= country.population.toInt()
+    override val population: Long= country.population
     override val borders= country.borders
     override val languages= country.languages.map { it.name }
     override val regionalBlocs= country.regionalBlocs.map { it.name }

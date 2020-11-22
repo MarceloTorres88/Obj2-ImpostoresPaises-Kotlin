@@ -5,10 +5,10 @@ import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
 
 class ObservatorioApiTest : DescribeSpec({
+    val api = RestCountriesAPI()
+    val observatorio = ObservatorioApi(api)
 
     describe("segunda etapa Etapa"){
-        val api = RestCountriesAPI()
-        val observatorio = ObservatorioApi(api)
 
         describe("Primer requerimiento - Limitrofes ") {
             it("son limitrofes") {
