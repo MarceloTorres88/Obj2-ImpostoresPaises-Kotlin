@@ -101,7 +101,6 @@ object China : Pais{
     override val regionalBlocs =  listOf(RegionalBloc("EU","European Union")).map { it.name }
 }
 
-
 class AdapterCountry(country: Country) : Pais {
     override val name: String = country.name
     override val alpha3Code: String = country.alpha3Code

@@ -36,10 +36,7 @@ object Observatorio {
         return aux1.sonPotencialesAliados(aux2)
     }
 
-    fun cincoPaisesConMayorPoblacion(): List<String> {
-        val variable = this.listaPaises.sortedByDescending { it.population }.map{it.name}
-        return variable.subList(0,5)
-    }
+    fun cincoPaisesConMayorPoblacion()= this.listaPaises.sortedByDescending { it.population }.map{it.name}.take(5)
 
     fun continenteMasPoblado():String=
         this.listaPaises.groupBy { it.region }. // agrupo paises por contienete

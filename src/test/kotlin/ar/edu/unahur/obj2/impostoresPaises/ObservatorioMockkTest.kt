@@ -3,7 +3,11 @@ package ar.edu.unahur.obj2.impostoresPaises
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldHave
+import io.kotest.matchers.types.shouldBeTypeOf
+import io.kotest.matchers.types.shouldNotBeTypeOf
 import io.mockk.every
 import io.mockk.mockk
 
@@ -108,67 +112,6 @@ class ObservatorioMockkTest : DescribeSpec({
     val observatorio = ObservatorioApi(api)
 
 
-//    every {api.buscarPaisesPorNombre("Argentina")}returns listOf(
-//        Country(
-//            "Argentina",
-//            "ARG",
-//            "Buenos Aires",
-//            "Americas",
-//            43590400,
-//            listOf("BOL", "BRA", "CHL", "PRY", "URY"),
-//            listOf(Language("Spanish"),Language("Guaraní")),
-//            listOf(RegionalBloc("USAN","Union of South American Nations"))
-//        )
-//    )
-//    every {api.buscarPaisesPorNombre("Brazil")}returns listOf(
-//        Country(
-//            "Brazil",
-//            "BRA",
-//            "Brasília",
-//            "Americas",
-//            206135893,
-//            listOf("ARG","BOL","COL", "GUF", "GUY","PRY","PER","SUR","URY","VEN"),
-//            listOf(Language("Portuguese")),
-//            listOf(RegionalBloc("USAN","Union of South American Nations"))
-//        )
-//    )
-//    every {api.buscarPaisesPorNombre("Peru")}returns listOf(
-//        Country(
-//            "Peru",
-//            "PER",
-//            "Lima",
-//            "Americas",
-//            31488700,
-//            listOf("BOL", "BRA", "CHL", "COL", "ECU"),
-//            listOf(Language("Spanish")),
-//            listOf(RegionalBloc("PA","Pacific Alliance"),RegionalBloc("USAN","Union of South American Nations"))
-//        )
-//    )
-//    every {api.buscarPaisesPorNombre("Spain")}returns listOf(
-//        Country(
-//            "Spain",
-//            "ESP",
-//            "Real Madrid",
-//            "Europe",
-//            46438022,
-//            listOf("AND","FRA","GIB","PRT","MAR"),
-//            listOf(Language("Spanish")),
-//            listOf(RegionalBloc("EU","European Union"))
-//        )
-//    )
-//    every {api.buscarPaisesPorNombre("Bolivia (Plurinational State of)")}returns listOf(
-//        Country(
-//            "Bolivia (Plurinational State of)",
-//            "BOL",
-//            "Sucre",
-//            "Americas",
-//            10985059,
-//            listOf("ARG","BRA","CHL","PRY","PER"),
-//            listOf(Language("Spanish"), Language("Aymara"), Language("Quechua")),
-//            listOf(RegionalBloc("USAN","Union of South American Nations"))
-//        )
-//    )
-
     describe("tercera etapa etapa Etapa"){
 
         describe("Primer requerimiento - Limitrofes ") {
@@ -223,12 +166,13 @@ class ObservatorioMockkTest : DescribeSpec({
                 observatorio.sonPotencialesAliados("Spain","Argentina").shouldBeFalse()
             }
         }
-//        describe("Los cinco paises mas poblados son"){
-//            val listaResultadoOrdenada = listOf("China", "India", "United States of America", "Indonesia", "Brazil")
-//            Observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
-//        }
-//        describe("el continente mas poblado es Asia"){
-//            Observatorio.continenteMasPoblado().shouldBe("Asia")
-//        }
+        describe("Los cinco paises mas poblados son"){
+            val listaResultadoOrdenada = listOf("China", "India", "United States of America", "Indonesia", "Brazil")
+            observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
+
+        }
+        describe("el continente mas poblado es Asia"){
+            observatorio.continenteMasPoblado().shouldBe("Asia")
+        }
     }
 })
