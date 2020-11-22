@@ -42,8 +42,8 @@ object Argentina : Pais{
     override val region = "Americas"
     override val population: Long = 43590400
     override val borders = listOf("BOL", "BRA", "CHL", "PRY", "URY")
-    override val languages = listOf(Language("Spanish"), Language("Guaraní")).map { it.name }
-    override val regionalBlocs =  listOf(RegionalBloc("USAN","Union of South American Nations")).map { it.name }
+    override val languages = listOf("Spanish","Guaraní")
+    override val regionalBlocs =  listOf("Union of South American Nations")
 }
 
 object Brasil : Pais{
@@ -53,8 +53,8 @@ object Brasil : Pais{
     override val region = "Americas"
     override val population: Long = 206135893
     override val borders = listOf("ARG","BOL","COL", "GUF", "GUY","PRY","PER","SUR","URY","VEN")
-    override val languages = listOf(Language("Portuguese")).map { it.name }
-    override val regionalBlocs =  listOf(RegionalBloc("USAN","Union of South American Nations")).map { it.name }
+    override val languages = listOf("Portuguese")
+    override val regionalBlocs =  listOf("Union of South American Nations")
 }
 
 object Peru : Pais{
@@ -64,8 +64,8 @@ object Peru : Pais{
     override val region = "Americas"
     override val population: Long = 31488700
     override val borders = listOf("BOL", "BRA", "CHL", "COL", "ECU")
-    override val languages = listOf(Language("Spanish")).map { it.name }
-    override val regionalBlocs =  listOf(RegionalBloc("PA","Pacific Alliance"),RegionalBloc("USAN","Union of South American Nations")).map { it.name }
+    override val languages = listOf("Spanish")
+    override val regionalBlocs =  listOf("Pacific Alliance","Union of South American Nations")
 }
 
 object Bolivia : Pais{
@@ -75,8 +75,8 @@ object Bolivia : Pais{
     override val region = "Americas"
     override val population: Long = 10985059
     override val borders = listOf("ARG","BRA","CHL","PRY","PER")
-    override val languages = listOf(Language("Spanish"), Language("Aymara"), Language("Quechua")).map { it.name }
-    override val regionalBlocs =  listOf(RegionalBloc("USAN","Union of South American Nations")).map { it.name }
+    override val languages = listOf("Spanish","Aymara","Quechua")
+    override val regionalBlocs =  listOf("Union of South American Nations")
 }
 
 object Spain : Pais{
@@ -86,8 +86,8 @@ object Spain : Pais{
     override val region = "Europe"
     override val population: Long = 46438022
     override val borders = listOf("AND","FRA","GIB","PRT","MAR")
-    override val languages = listOf(Language("Spanish")).map { it.name }
-    override val regionalBlocs =  listOf(RegionalBloc("EU","European Union")).map { it.name }
+    override val languages = listOf("Spanish")
+    override val regionalBlocs =  listOf("European Union")
 }
 
 object China : Pais{
@@ -97,8 +97,8 @@ object China : Pais{
     override val region = "Asia"
     override val population: Long = 1377422166
     override val borders = listOf("AFG", "BTN", "MMR", "HKG", "IND", "KAZ", "PRK", "KGZ", "LAO", "MAC", "MNG", "PAK", "RUS", "TJK", "VNM")
-    override val languages = listOf(Language("Chinese")).map { it.name }
-    override val regionalBlocs =  listOf(RegionalBloc("EU","European Union")).map { it.name }
+    override val languages = listOf("Chinese")
+    override val regionalBlocs =  listOf("European Union")
 }
 
 class AdapterCountry(country: Country) : Pais {
