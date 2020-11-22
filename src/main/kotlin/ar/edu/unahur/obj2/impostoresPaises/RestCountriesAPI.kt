@@ -53,14 +53,14 @@ class RestCountriesAPI {
 // Todos los campos disponibles pueden verse en http://restcountries.eu/#api-endpoints-response-example.
 
 data class Country(
-  val name: String,
-  val alpha3Code: String,
-  val capital: String,
-  val region: String,
-  val population: Long,
-  val borders: List<String>,
-  val languages: List<Language>,
-  val regionalBlocs: List<RegionalBloc>
+    val name: String,
+    val alpha3Code: String,
+    val capital: String,
+    val region: String,
+    val population: Long,
+    val borders: List<String>,
+    val languages: List<Language>,
+    val regionalBlocs: List<RegionalBloc>
 )
 
 data class Language(

@@ -7,65 +7,65 @@ import io.kotest.matchers.shouldBe
 class ObservatorioApiTest : DescribeSpec({
 
     describe("segunda etapa Etapa"){
-        ObservatorioApi.api = RestCountriesAPI()
-
+        val api = RestCountriesAPI()
+        val observatorio = ObservatorioApi(api)
 
         describe("Primer requerimiento - Limitrofes ") {
             it("son limitrofes") {
-                ObservatorioApi.sonLimitrofes("Argentina", "Brazil").shouldBeTrue()
+                observatorio.sonLimitrofes("Argentina", "Brazil").shouldBeTrue()
             }
             it("son limitrofes - inverso") {
-                ObservatorioApi.sonLimitrofes("Brazil", "Argentina").shouldBeTrue()
+                observatorio.sonLimitrofes("Brazil", "Argentina").shouldBeTrue()
             }
             it("NO son limitrofes") {
-                ObservatorioApi.sonLimitrofes("Argentina", "Peru").shouldBeFalse()
+                observatorio.sonLimitrofes("Argentina", "Peru").shouldBeFalse()
             }
             it("NO son limitrofes - inverso") {
-                ObservatorioApi.sonLimitrofes("Peru", "Argentina").shouldBeFalse()
+                observatorio.sonLimitrofes("Peru", "Argentina").shouldBeFalse()
             }
         }
 
         describe("Segundo requerimiento - traduccion"){
             it("necesitan traduccion"){
-                ObservatorioApi.necesitanTraduccion("Argentina","Brazil").shouldBeTrue()
+                observatorio.necesitanTraduccion("Argentina","Brazil").shouldBeTrue()
             }
             it("necesitan traduccion - inverso"){
-                ObservatorioApi.necesitanTraduccion("Brazil", "Argentina").shouldBeTrue()
+                observatorio.necesitanTraduccion("Brazil", "Argentina").shouldBeTrue()
             }
             it("NO necesitan traduccion"){
-                ObservatorioApi.necesitanTraduccion("Argentina","Peru").shouldBeFalse()
+                observatorio.necesitanTraduccion("Argentina","Peru").shouldBeFalse()
             }
             it("NO necesitan traduccion - inverso"){
-                ObservatorioApi.necesitanTraduccion("Peru", "Argentina").shouldBeFalse()
+                observatorio.necesitanTraduccion("Peru", "Argentina").shouldBeFalse()
             }
         }
 
         describe("tercer requerimiento - potenciales aliados"){
             it("son aliados"){
-                ObservatorioApi.sonPotencialesAliados("Argentina","Bolivia (Plurinational State of)").shouldBeTrue()
+                observatorio.sonPotencialesAliados("Argentina","Bolivia (Plurinational State of)").shouldBeTrue()
             }
             it("son aliados - inverso"){
-                ObservatorioApi.sonPotencialesAliados("Bolivia (Plurinational State of)", "Argentina").shouldBeTrue()
+                observatorio.sonPotencialesAliados("Bolivia (Plurinational State of)", "Argentina").shouldBeTrue()
             }
             it("no son aliados por traduccion"){
-                ObservatorioApi.sonPotencialesAliados("Argentina","Brazil").shouldBeFalse()
+                observatorio.sonPotencialesAliados("Argentina","Brazil").shouldBeFalse()
             }
             it("no son aliados por traduccion - inverso"){
-                ObservatorioApi.sonPotencialesAliados("Brazil","Argentina").shouldBeFalse()
+                observatorio.sonPotencialesAliados("Brazil","Argentina").shouldBeFalse()
             }
             it("no son aliados por bloque regional"){
-                ObservatorioApi.sonPotencialesAliados("Argentina","Spain").shouldBeFalse()
+                observatorio.sonPotencialesAliados("Argentina","Spain").shouldBeFalse()
             }
             it("no son aliados por bloque regional - inverso"){
-                ObservatorioApi.sonPotencialesAliados("Spain","Argentina").shouldBeFalse()
+                observatorio.sonPotencialesAliados("Spain","Argentina").shouldBeFalse()
             }
         }
         describe("Los cinco paises mas poblados son"){
             val listaResultadoOrdenada = listOf("China", "India", "United States of America", "Indonesia", "Brazil")
-            ObservatorioApi.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
+            observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)
         }
         describe("el continente mas poblado es Asia"){
-            ObservatorioApi.continenteMasPoblado().shouldBe("Asia")
+            observatorio.continenteMasPoblado().shouldBe("Asia")
         }
     }
 })

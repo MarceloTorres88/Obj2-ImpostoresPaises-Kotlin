@@ -24,7 +24,7 @@ fun main () {
         }
     }
     catch (e: Exception){
-        println("El menu se maneja solo con numeros.")
+        println("El menu se maneja solo con numeros del 0 al 6")
     }
     finally {
         println("¡Gracias por usar nuestro programa!")
@@ -40,8 +40,9 @@ fun menu(){ // puse esto para que no se repita 700 veces estas lineas
 fun primeraOpcion() {
     println("Ingrese el nombre de un pais")
     try { // intenta buscar el pais e imprimir la informacion
-        val pais1 = ObservatorioApi.encontrarPais(readLine()!!)
-        println("El pais ${pais1.name} tiene ${pais1.population} habitantes y habla ${pais1.languages} idiomas"+"\n")
+        val api = RestCountriesAPI()
+        val pais1 = ObservatorioApi(api).encontrarPais(readLine()!!)
+        println("El pais ${pais1.name} tiene ${pais1.population} habitantes y habla ${pais1.languages}"+"\n")
     }
     catch (e: Exception){ // si hay error lo dice
         println("No existe tal pais. Volvemos al menu.")
@@ -82,6 +83,7 @@ fun primeraOpcion() {
 //}
 
 fun opcionDosTresCuatro(){
+    val api = RestCountriesAPI()
     println("Ingrese el nombre de un pais")
     val pais1  = readLine()!!
     println("Ingrese el nombre de otro un pais")
@@ -94,9 +96,9 @@ fun opcionDosTresCuatro(){
     try {
         println("los paises $pais1 y $pais2 "+ // aca hice magia , y con el mismo metodo , meti las 3 opciones.
                 when{
-                    Opcion.opcion == 2 -> if(ObservatorioApi.sonLimitrofes(pais1,pais2)){"si"}else{"no"}+ " son limitrofes."+"\n"
-                    Opcion.opcion == 3 -> if(ObservatorioApi.necesitanTraduccion(pais1,pais2)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
-                    else -> if(ObservatorioApi.sonPotencialesAliados(pais1,pais2)){""}else{"no"}+ " son potenciales aliados."+"\n"
+                    Opcion.opcion == 2 -> if(ObservatorioApi(api).sonLimitrofes(pais1,pais2)){"si"}else{"no"}+ " son limitrofes."+"\n"
+                    Opcion.opcion == 3 -> if(ObservatorioApi(api).necesitanTraduccion(pais1,pais2)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
+                    else -> if(ObservatorioApi(api).sonPotencialesAliados(pais1,pais2)){""}else{"no"}+ " son potenciales aliados."+"\n"
                 })
     }
     catch (e: Exception){
@@ -108,7 +110,8 @@ fun opcionDosTresCuatro(){
 }
 
 fun quintaOpcion() {
-    val listaPaises = ObservatorioApi.cincoPaisesConMayorPoblacion()
+    val api = RestCountriesAPI()
+    val listaPaises = ObservatorioApi(api).cincoPaisesConMayorPoblacion()
     // lista los paises con salto de linea.
     println("Los 5 paises con mayor poblacion son:"+"\n"+ listaPaises.get(0) +"\n"+ listaPaises.get(1) +
             "\n"+ listaPaises.get(2) +"\n"+ listaPaises.get(3) +"\n"+ listaPaises.get(4) +"\n")
@@ -116,7 +119,8 @@ fun quintaOpcion() {
 }
 
 fun sextaOpcion() {
-    println("El continenete mas poblado es:"+"\n"+ObservatorioApi.continenteMasPoblado()+"\n")
+    val api = RestCountriesAPI()
+    println("El continenete mas poblado es:"+"\n"+ObservatorioApi(api).continenteMasPoblado()+"\n")
     volverAlMenu()
 }
 

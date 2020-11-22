@@ -1,8 +1,6 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-object ObservatorioApi {
-
-    var api = RestCountriesAPI()
+class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
 
     // ver de SI utilizar el modo con lista de paises tratando de utilizar el " lazy val " para no iniciar algo hasta no ser llamado. EJ:
 //    val test: String by lazy {
@@ -19,11 +17,6 @@ object ObservatorioApi {
 
     fun encontrarPais(pais: String) : Pais {
         return  AdapterCountry (api.buscarPaisesPorNombre(pais).first())
-//        if(!this.listaPaises.any{it.name == pais}){
-//            throw error("el pais $pais no esta en la lista")
-//        }else{
-//            return this.listaPaises.find{it.name == pais}!!
-//        }
     }
 
     fun cincoPaisesConMayorPoblacion(): List<String> {
@@ -54,7 +47,6 @@ object ObservatorioApi {
         }
     }
 
-    // No se si popdriamos dejar pasar de la primera parte de buscar y entregar el objeto pais para verificar que si son limitrofes.
     fun sonLimitrofes(pais1: String, pais2: String): Boolean {
         val aux1 = this.encontrarPais(pais1)
         val aux2 = this.encontrarPais(pais2)
