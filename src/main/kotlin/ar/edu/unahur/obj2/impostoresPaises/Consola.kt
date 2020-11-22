@@ -15,6 +15,10 @@ object Consola{ // solo para guardar un numero y que sea alcanzable por todas la
 
 fun main () {
     menu()
+}
+
+fun menu(){
+    menuEscrito()
     try {
         Consola.ingresoOpcionMenu() // ingresa el valor
         while (Consola.opcionMenu != 0){ // con esto se queda en el menu resolviendo todas las consultas que quiera hasta que tiren el 0
@@ -35,9 +39,9 @@ fun main () {
     finally {
         Consola.escribirLinea("¡Gracias por usar nuestro programa!")
     }
-} // aca termina el programa
+}
 
-fun menu(){ // puse esto para que no se repita 700 veces estas lineas
+fun menuEscrito(){ // puse esto para que no se repita 700 veces estas lineas
     Consola.lineaEnBlanco()
     Consola.escribirLinea("Menu principal")
     Consola.escribirLinea("Ingrese numero de operacion:")
@@ -117,6 +121,6 @@ fun errorReingresoMenu() {
 }
 
 fun volverAlMenu(){
-    menu()
+    menuEscrito()
     Consola.ingresoOpcionMenu()
 }
