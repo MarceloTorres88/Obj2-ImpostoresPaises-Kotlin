@@ -51,57 +51,26 @@ fun primeraOpcion() {
     }
 }
 
-//fun segundaOpcion() {
-//    println("Ingrese el nombre de un pais")
-//    val pais1  = readLine()!!
-//    println("Ingrese el nombre de otro un pais")
-//    val pais2 = readLine()!!
-//    // comprobacion de que ambos existen y que no son el mismo. reingresar
-//    println("los paises $pais1 y $pais2 "+if(ObservatorioApi.sonLimitrofes(pais1,pais2)){"si"}else{"no"}+ " son limitrofes."+"\n")
-//    volverAlMenu()
-//}
-//
-//fun terceraOpcion() {
-//    println("Ingrese el nombre de un pais")
-//    val pais1  = readLine()!!
-//    println("Ingrese el nombre de otro un pais")
-//    val pais2 = readLine()!!
-//    // comprobacion de que ambos existen y que no son el mismo. reingresar
-//    println("los paises $pais1 y $pais2 "+if(ObservatorioApi.necesitanTraduccion(pais1,pais2)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n")
-//    volverAlMenu()
-//}
-//
-//fun cuartaOpcion() {
-//    println("Ingrese el nombre de un pais")
-//    val pais1  = readLine()!!
-//    println("Ingrese el nombre de otro un pais")
-//    val pais2 = readLine()!!
-//    // comprobacion de que ambos existen y que no son el mismo. reingresar
-//    println("los paises $pais1 y $pais2 "+if(ObservatorioApi.sonPotencialesAliados(pais1,pais2)){""}else{"no"}+ " son potenciales aliados."+"\n")
-//    volverAlMenu()
-//}
-
 fun opcionDosTresCuatro(){
     val api = RestCountriesAPI()
     println("Ingrese el nombre de un pais")
     val pais1  = readLine()!!
     println("Ingrese el nombre de otro un pais")
     var pais2 = readLine()!!
-    while (pais2 == pais1){
+    while (pais2 == pais1){ // comprobacion de que no son iguales
         println("No se puede comparar un pais con sigo mismo."+"\n"+"Ingrese el nombre de otro pais.")
         pais2 = readLine()!!
     }
-    // comprobacion de que ambos existen. reingresar
-    try {
+    try {// intenta hacer la operacion
         println("los paises $pais1 y $pais2 "+ // aca hice magia , y con el mismo metodo , meti las 3 opciones.
-                when{
+                when{ // segun opcion del menu es la respuesta
                     Opcion.opcion == 2 -> if(ObservatorioApi(api).sonLimitrofes(pais1,pais2)){"si"}else{"no"}+ " son limitrofes."+"\n"
                     Opcion.opcion == 3 -> if(ObservatorioApi(api).necesitanTraduccion(pais1,pais2)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
                     else -> if(ObservatorioApi(api).sonPotencialesAliados(pais1,pais2)){""}else{"no"}+ " son potenciales aliados."+"\n"
                 })
     }
-    catch (e: Exception){
-        println("Algo salio mal.")
+    catch (e: Exception){ // si hay error lo dice
+        println("Se ingreso algun pais mal.")
     }
     finally {
         volverAlMenu()
@@ -132,41 +101,3 @@ fun volverAlMenu(){
     menu()
     Opcion.opcion = readLine()!!.toInt()
 }
-
-
-
-
-//menu principal
-//  para ingresar el numero hacerlo en un when , que si no es uno de los numeros deseados, que reingrese
-// 1 info del pais
-    // ingrese el pais
-    // fun busquedaPais
-        // rtn "el pais $ pais tiene $pais.habitantes habitantes y habla $pais.idiomas idiomas"
-// 2 son limitrofes con
-    // "ingrese el primer pais"
-    // fun busquedaPais
-    // "ingrese segundo pais"
-    // fun busquedaPais
-        // fun son limitrofes -> "si , son limitrofes $pais1 y $pais2"/"no , no son limitrofes $pais1 y $pais2"
-// 3 pueden dialogar
-    // "ingrese el primer pais"
-    // fun busquedaPais
-    // "ingrese segundo pais"
-    // fun busquedaPais
-        // fun son limitrofes -> "si , pueden dialogar ciudadanos de $pais1 y $pais2"/"no , no pueden dialogar ciudadanos de $pais1 y $pais2"
-// 4 son potenciales aliados
-    // "ingrese el   primer pais"
-    // fun busquedaPais
-    // "ingrese segundo pais"
-    // fun busquedaPais
-        // fun son limitrofes -> "si , son potenciales aliados $pais1 y $pais2"/"no , no son potenciales aliados $pais1 y $pais2"
-// 5 5 paises con mayor poblacion
-    // fun paisesConMayorPobalcion -> "los 5 paises mas pobladon son: " + ln(este comando hace linea a parte) +
-        // $list.get(1) + ln +
-        // $list.get(2) + ln +
-        // $list.get(3) + ln +
-        // $list.get(4) + ln +
-        // $list.get(5)
-// 6 continente mas poblado
-    // fun contiente mas poblado -> "el continente mas poblado es $continente y tiene $ habitantes (hacerlo long) habitantes
-// 0 cerrar -> while readline!= 0 (todo el programa dentro de este while)
