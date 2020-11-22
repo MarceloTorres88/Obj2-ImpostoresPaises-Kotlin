@@ -90,23 +90,22 @@ object Spain : Pais{
     override val regionalBlocs =  listOf(RegionalBloc("EU","European Union")).map { it.name }
 }
 
-object Panama : Pais{
-    override val name = "Panama"
-    override val alpha3Code = "PAN"
-    override val capital = "Panama City"
-    override val region = "Americas"
-    override val population = 3814672
-    override val borders = listOf("COL","CRI")
-    override val languages = listOf(Language("Spanish")).map { it.name }
-    override val regionalBlocs =  listOf(RegionalBloc("CAIS","Central American Integration System")).map { it.name }
-}
-
 object China : Pais{
     override val name = "China"
     override val alpha3Code = "CHN"
     override val capital = "Beijing"
     override val region = "Asia"
     override val population = 1377422166
+    override val borders = listOf("AFG", "BTN", "MMR", "HKG", "IND", "KAZ", "PRK", "KGZ", "LAO", "MAC", "MNG", "PAK", "RUS", "TJK", "VNM")
+    override val languages = listOf(Language("Chinese")).map { it.name }
+    override val regionalBlocs =  listOf(RegionalBloc("EU","European Union")).map { it.name }
+}
+object China1 : Pais{
+    override val name = "China"
+    override val alpha3Code = "CHN"
+    override val capital = "Beijing"
+    override val region = "Asia"
+    override val population = 1
     override val borders = listOf("AFG", "BTN", "MMR", "HKG", "IND", "KAZ", "PRK", "KGZ", "LAO", "MAC", "MNG", "PAK", "RUS", "TJK", "VNM")
     override val languages = listOf(Language("Chinese")).map { it.name }
     override val regionalBlocs =  listOf(RegionalBloc("EU","European Union")).map { it.name }

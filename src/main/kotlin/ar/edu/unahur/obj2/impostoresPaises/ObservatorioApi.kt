@@ -24,28 +24,10 @@ class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
         return variable.subList(0,5)
     }
 
-    private fun filtrarPorContinente(continente : String) =  api.todosLosPaises().filter { it.region == continente }
-
-    private fun sumaPoblacionPorContinente(continente: String) = this.filtrarPorContinente(continente).sumOf{ it.population.toLong() }
-
-
-    fun continenteMasPoblado() : String{
-        val africa = this.sumaPoblacionPorContinente("Africa")
-        val americas = this.sumaPoblacionPorContinente("Americas")
-        val asia = this.sumaPoblacionPorContinente("Asia")
-        val europe = this.sumaPoblacionPorContinente("Europe")
-        val oceania = this.sumaPoblacionPorContinente("Oceania")
-
-        val mayorpoblacionPorContiennte = listOf(africa,americas,asia,europe,oceania).maxOf { it }
-
-        return when {
-            mayorpoblacionPorContiennte == africa -> "Africa"
-            mayorpoblacionPorContiennte == americas -> "Americas"
-            mayorpoblacionPorContiennte == asia -> "Asia"
-            mayorpoblacionPorContiennte == europe -> "Europe"
-            else -> "Oceania"
-        }
-    }
+    fun continenteMasPoblado() : String =
+        api.todosLosPaises().groupBy { it.region }
+            .mapValues { entry -> entry.value.sumOf { it.population }
+                .toFloat()  }.map { it.key }.first()
 
     fun sonLimitrofes(pais1: String, pais2: String): Boolean {
         val aux1 = this.encontrarPais(pais1)

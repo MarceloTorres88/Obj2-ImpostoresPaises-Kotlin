@@ -41,24 +41,10 @@ object Observatorio {
         return variable.subList(0,5)
     }
 
-    private fun filtrarPorContinente(continente : String) =  this.listaPaises.filter { it.region == continente }
+    fun continenteMasPoblado():String=
+        this.listaPaises.groupBy { it.region }
+            .mapValues { entry -> entry.value.sumOf { it.population }.toFloat()}
+            .map { it.key }
+            .first()
 
-    private fun sumaPoblacionPorContinente(continente: String) = this.filtrarPorContinente(continente).sumBy { it.population }
-
-    fun continenteMasPoblado() : String{
-        val africa = this.sumaPoblacionPorContinente("Africa")
-        val americas = this.sumaPoblacionPorContinente("Americas")
-        val asia = this.sumaPoblacionPorContinente("Asia")
-        val europe = this.sumaPoblacionPorContinente("Europe")
-        val oceania = this.sumaPoblacionPorContinente("Oceania")
-
-        val mayorpoblacionPorContiennte = listOf(africa,americas,asia,europe,oceania).maxOf { it }
-        return when {
-            mayorpoblacionPorContiennte == africa -> "Africa"
-            mayorpoblacionPorContiennte == americas -> "Americas"
-            mayorpoblacionPorContiennte == asia -> "Asia"
-            mayorpoblacionPorContiennte == europe -> "Europe"
-            else -> "Oceania"
-        }
-    }
 }
