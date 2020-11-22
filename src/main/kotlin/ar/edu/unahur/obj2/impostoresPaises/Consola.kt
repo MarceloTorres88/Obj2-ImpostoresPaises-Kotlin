@@ -1,50 +1,60 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
 
-object Opcion{ // solo para guardar un numero y que sea alcanzable por todas las opciones
-    var opcion = 0
+object Consola{ // solo para guardar un numero y que sea alcanzable por todas las opciones
+    var opcionMenu = 0
+    fun leerLinea() = readLine()!!
+    fun escribirLinea(contenido: String) { println(contenido) }
+    fun leerNumero() = readLine()!!.toInt()
+    fun ingresoOpcionMenu(){ opcionMenu = leerNumero() }
 }
 
 
 fun main () {
     menu()
     try {
-        Opcion.opcion = readLine()!!.toInt() // ingresa el valor
-        while (Opcion.opcion != 0){ // con esto se queda en el menu resolviendo todas las consultas que quiera hasta que tiren el 0
-            when {
-                Opcion.opcion == 1 -> primeraOpcion()
-                Opcion.opcion == 2 -> opcionDosTresCuatro()
-                Opcion.opcion == 3 -> opcionDosTresCuatro()
-                Opcion.opcion == 4 -> opcionDosTresCuatro()
-                Opcion.opcion == 5 -> quintaOpcion()
-                Opcion.opcion == 6 -> sextaOpcion()
+        Consola.ingresoOpcionMenu() // ingresa el valor
+        while (Consola.opcionMenu != 0){ // con esto se queda en el menu resolviendo todas las consultas que quiera hasta que tiren el 0
+            when (Consola.opcionMenu) {
+                1 -> primeraOpcion()
+                2 -> opcionDosTresCuatro()
+                3 -> opcionDosTresCuatro()
+                4 -> opcionDosTresCuatro()
+                5 -> quintaOpcion()
+                6 -> sextaOpcion()
                 else -> errorReingresoMenu()
             }
         }
     }
-    catch (e: Exception){
-        println("El menu se maneja solo con numeros del 0 al 6")
+    catch (e: Exception){ // si no se ingresa un numero sale por aca
+        Consola.escribirLinea("El menu se maneja solo con numeros del 0 al 6")
     }
     finally {
-        println("¡Gracias por usar nuestro programa!")
+        Consola.escribirLinea("¡Gracias por usar nuestro programa!")
     }
 } // aca termina el programa
 
 fun menu(){ // puse esto para que no se repita 700 veces estas lineas
-    println("Menu principal"+"\n"+"Ingrese numero de operacion:"+"\n"+"\n"+"1 - Info de un pais."+"\n"+ "2 - Paises limitrofes."
-            +"\n"+ "3 - Paises que pueden dialogar sin interprete."+"\n"+ "4 - Paises potenciales aliados."
-            +"\n"+ "5 - Los 5 paises con mayor poblacion."+"\n"+ "6 - Contiente mas poblado."+"\n"+"\n"+"0 - Salir")
+    Consola.escribirLinea("Menu principal")
+    Consola.escribirLinea("Ingrese numero de operacion:")
+    Consola.escribirLinea("1 - Info de un pais.")
+    Consola.escribirLinea("2 - Paises limitrofes.")
+    Consola.escribirLinea("3 - Paises que pueden dialogar sin interprete.")
+    Consola.escribirLinea("4 - Paises potenciales aliados.")
+    Consola.escribirLinea("5 - Los 5 paises con mayor poblacion.")
+    Consola.escribirLinea("6 - Contiente mas poblado.")
+    Consola.escribirLinea("0 - Salir")
 }
 
 fun primeraOpcion() {
-    println("Ingrese el nombre de un pais")
+    Consola.escribirLinea("Ingrese el nombre de un pais")
     try { // intenta buscar el pais e imprimir la informacion
         val api = RestCountriesAPI()
-        val pais1 = ObservatorioApi(api).encontrarPais(readLine()!!)
-        println("El pais ${pais1.name} tiene ${pais1.population} habitantes y habla ${pais1.languages}"+"\n")
+        val pais1 = ObservatorioApi(api).encontrarPais(Consola.leerLinea())
+        Consola.escribirLinea("El pais ${pais1.name} tiene ${pais1.population} habitantes y habla ${pais1.languages}"+"\n")
     }
     catch (e: Exception){ // si hay error lo dice
-        println("No existe tal pais. Volvemos al menu.")
+        Consola.escribirLinea("No existe tal pais. Volvemos al menu.")
     }
     finally {// sale al menu.
         volverAlMenu()
@@ -53,24 +63,26 @@ fun primeraOpcion() {
 
 fun opcionDosTresCuatro(){
     val api = RestCountriesAPI()
-    println("Ingrese el nombre de un pais")
-    val pais1  = readLine()!!
-    println("Ingrese el nombre de otro un pais")
-    var pais2 = readLine()!!
+    Consola.escribirLinea("Ingrese el nombre de un pais")
+    val pais1  = Consola.leerLinea()
+    Consola.escribirLinea("Ingrese el nombre de otro un pais")
+    var pais2 = Consola.leerLinea()
     while (pais2 == pais1){ // comprobacion de que no son iguales
-        println("No se puede comparar un pais con sigo mismo."+"\n"+"Ingrese el nombre de otro pais.")
-        pais2 = readLine()!!
+        Consola.escribirLinea("No se puede comparar un pais con sigo mismo."+"\n"+"Ingrese el nombre de otro pais.")
+        pais2 = Consola.leerLinea()
     }
     try {// intenta hacer la operacion
-        println("los paises $pais1 y $pais2 "+ // aca hice magia , y con el mismo metodo , meti las 3 opciones.
-                when{ // segun opcion del menu es la respuesta
-                    Opcion.opcion == 2 -> if(ObservatorioApi(api).sonLimitrofes(pais1,pais2)){"si"}else{"no"}+ " son limitrofes."+"\n"
-                    Opcion.opcion == 3 -> if(ObservatorioApi(api).necesitanTraduccion(pais1,pais2)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
+        Consola.escribirLinea(  // aca hice magia , y con el mismo metodo , meti las 3 opciones.
+            "los paises $pais1 y $pais2 "+
+                when (Consola.opcionMenu) { // segun opcion del menu es la respuesta
+                    2 -> if(ObservatorioApi(api).sonLimitrofes(pais1,pais2)){"si"}else{"no"}+ " son limitrofes."+"\n"
+                    3 -> if(ObservatorioApi(api).necesitanTraduccion(pais1,pais2)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
                     else -> if(ObservatorioApi(api).sonPotencialesAliados(pais1,pais2)){""}else{"no"}+ " son potenciales aliados."+"\n"
-                })
+                }
+        )
     }
     catch (e: Exception){ // si hay error lo dice
-        println("Se ingreso algun pais mal.")
+        Consola.escribirLinea("Se ingreso algun pais mal.")
     }
     finally {
         volverAlMenu()
@@ -80,24 +92,29 @@ fun opcionDosTresCuatro(){
 fun quintaOpcion() {
     val api = RestCountriesAPI()
     val listaPaises = ObservatorioApi(api).cincoPaisesConMayorPoblacion()
-    // lista los paises con salto de linea.
-    println("Los 5 paises con mayor poblacion son:"+"\n"+ listaPaises.get(0) +"\n"+ listaPaises.get(1) +
-            "\n"+ listaPaises.get(2) +"\n"+ listaPaises.get(3) +"\n"+ listaPaises.get(4) +"\n")
+    Consola.escribirLinea("Los 5 paises con mayor poblacion son:")
+    Consola.escribirLinea(listaPaises[0])
+    Consola.escribirLinea(listaPaises[1])
+    Consola.escribirLinea(listaPaises[2])
+    Consola.escribirLinea(listaPaises[3])
+    Consola.escribirLinea(listaPaises[4])
     volverAlMenu()
 }
 
 fun sextaOpcion() {
     val api = RestCountriesAPI()
-    println("El continenete mas poblado es:"+"\n"+ObservatorioApi(api).continenteMasPoblado()+"\n")
+    Consola.escribirLinea("El continenete mas poblado es:")
+    Consola.escribirLinea(ObservatorioApi(api).continenteMasPoblado())
     volverAlMenu()
 }
 
 fun errorReingresoMenu() {
-    println("Error al ingreso de datos."+"\n"+"Ingrese nuevamente"+"\n")
-    Opcion.opcion = readLine()!!.toInt()
+    Consola.escribirLinea("Error al seleccionar opcion.")
+    Consola.escribirLinea("Ingrese nuevamente.")
+    Consola.ingresoOpcionMenu()
 }
 
 fun volverAlMenu(){
     menu()
-    Opcion.opcion = readLine()!!.toInt()
+    Consola.ingresoOpcionMenu()
 }

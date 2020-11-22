@@ -1,7 +1,7 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
 // Acá encapsulamos el manejo de la consola real, desacoplandolo del programa en sí
-object Consola {
+object Consolaa {
   fun leerLinea() = readLine()
   fun escribirLinea(contenido: String) {
     println(contenido)
@@ -11,7 +11,7 @@ object Consola {
 // El código de nuestro programa, que (eventualmente) interactuará con una persona real
 object Programa {
   // Ambas son variables para poder cambiarlas en los tests
-  var entradaSalida = Consola
+  var entradaSalida = Consolaa
   var api = RestCountriesAPI()
 
   fun iniciar() {

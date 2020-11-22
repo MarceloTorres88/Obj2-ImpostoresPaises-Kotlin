@@ -5,7 +5,7 @@ import io.mockk.*
 
 class ProgramaTest : DescribeSpec({
   describe("Programa") {
-    val consolaMock = mockk<Consola>()
+    val consolaMock = mockk<Consolaa>()
 
     // Configuramos un mock para la entrada salida
     // TODO: hacer lo mismo para la RestCountriesAPI
