@@ -43,6 +43,8 @@ class ConsolaTest: DescribeSpec ({
         it("Busca pero no encuentra el pais"){
             every { consola.leerLinea() } returns "1" andThen "argetune" andThen "0"
 
+            every { api.buscarPaisesPorNombre("argetune") } throws Exception("No existe pais")
+
             programa.iniciar()
 
             verify {
@@ -93,6 +95,8 @@ class ConsolaTest: DescribeSpec ({
 
         it("Opcion 2 se ingreso mal un pais"){
             every { consola.leerLinea() } returns "2" andThen "argola" andThen "0"
+
+            every { api.buscarPaisesPorNombre("argola") } throws Exception("No existe pais")
 
             programa.iniciar()
 
