@@ -10,8 +10,9 @@ import io.mockk.mockk
 
 class ObservatorioMockkTest : DescribeSpec({
     val api = mockk<RestCountriesAPI>()
+    val observatorio = ObservatorioApi(api)
 
-    every { api.todosLosPaises() } returns listOf(
+    every { api.buscarPaisesPorNombre("Argentina") } returns listOf(
         Country(
             "Argentina",
             "ARG",
@@ -20,19 +21,24 @@ class ObservatorioMockkTest : DescribeSpec({
             43590400,
             listOf("BOL", "BRA", "CHL", "PRY", "URY"),
             listOf(Language("Spanish"),Language("Guaraní")),
-            listOf(RegionalBloc("USAN","Union of South American Nations"))
-        ),
+            listOf(RegionalBloc("ARG","Union of South American Nations"))
+        )
+    )
+
+    every { api.buscarPaisesPorNombre("Brazil") } returns listOf(
         Country(
             "Brazil",
             "BRA",
             "Brasília",
             "Americas",
             206135893,
-            listOf("ARG","BOL","COL", "GUF", "GUY","PRY","PER","SUR","URY","VEN"),
+            listOf("ARG", "BOL", "COL", "GUF", "GUY", "PRY", "PER", "SUR", "URY", "VEN"),
             listOf(Language("Portuguese")),
-            listOf(RegionalBloc("USAN","Union of South American Nations"))
+            listOf(RegionalBloc("USAN", "Union of South American Nations"))
         )
-        ,
+    )
+
+    every { api.buscarPaisesPorNombre("Peru") } returns listOf(
         Country(
             "Peru",
             "PER",
@@ -41,71 +47,38 @@ class ObservatorioMockkTest : DescribeSpec({
             31488700,
             listOf("BOL", "BRA", "CHL", "COL", "ECU"),
             listOf(Language("Spanish")),
-            listOf(RegionalBloc("PA","Pacific Alliance"),RegionalBloc("USAN","Union of South American Nations"))
-        ),
-        Country(
-            "Spain",
-            "ESP",
-            "Real Madrid",
-            "Europe",
-            46438022,
-            listOf("AND","FRA","GIB","PRT","MAR"),
-            listOf(Language("Spanish")),
-            listOf(RegionalBloc("EU","European Union"))
-        ),
+            listOf(RegionalBloc("PA","Pacific Alliance"),(RegionalBloc("USAN","Union of South American Nations")))
+        )
+    )
+
+    every { api.buscarPaisesPorNombre("Bolivia (Plurinational State of)") } returns listOf(
         Country(
             "Bolivia (Plurinational State of)",
             "BOL",
             "Sucre",
             "Americas",
             10985059,
-            listOf("ARG","BRA","CHL","PRY","PER"),
+            listOf("ARG", "BRA", "CHL", "PRY", "PER"),
             listOf(Language("Spanish"), Language("Aymara"), Language("Quechua")),
             listOf(RegionalBloc("USAN","Union of South American Nations"))
-        ),
-        Country(
-            "China",
-            "CHN",
-            "Beijing",
-            "Asia",
-            1377422166,
-            listOf("AFG", "BTN", "MMR", "HKG", "IND", "KAZ", "PRK", "KGZ", "LAO", "MAC", "MNG", "PAK", "RUS", "TJK", "VNM"),
-            listOf(Language("Chinese")),
-            listOf()
-        ),
-        Country(
-            "India",
-            "IND",
-            "New Delhi",
-            "Asia",
-            1295210000,
-            listOf("AFG", "BGD", "BTN", "MMR", "CHN", "NPL", "PAK", "LKA"),
-            listOf(Language("Hindi"), Language("English")),
-            listOf(RegionalBloc("SAARC","South Asian Association for Regional Cooperation"))
-        ),
-        Country(
-            "United States of America",
-            "USA",
-            "Washington, D.C.",
-            "Americas",
-            323947000,
-            listOf("CAN", "MEX"),
-            listOf(Language("English")),
-            listOf(RegionalBloc("NAFTA","North American Free Trade Agreement"))
-        ),
-        Country(
-            "Indonesia",
-            "IDN",
-            "Jakarta",
-            "Asia",
-            258705000,
-            listOf("TLS", "MYS", "PNG"),
-            listOf(Language("Indonesian")),
-            listOf(RegionalBloc("ASEAN","Association of Southeast Asian Nations"))
+
         )
     )
 
-    val observatorio = ObservatorioApi(api)
+    every { api.buscarPaisesPorNombre("Spain") } returns listOf(
+        Country(
+            "Spain",
+            "ESP",
+            "Madrid",
+            "Europe",
+            46438422,
+            listOf("AND", "FRA", "GIB", "PRT", "MAR"),
+            listOf(Language("Spanish")),
+            listOf(RegionalBloc("EU", "European Union"))
+
+        )
+    )
+
 
 
     describe("tercera etapa etapa Etapa"){
@@ -162,6 +135,100 @@ class ObservatorioMockkTest : DescribeSpec({
                 observatorio.sonPotencialesAliados("Spain","Argentina").shouldBeFalse()
             }
         }
+
+        every { api.todosLosPaises() } returns listOf(
+            Country(
+                "Argentina",
+                "ARG",
+                "Buenos Aires",
+                "Americas",
+                43590400,
+                listOf("BOL", "BRA", "CHL", "PRY", "URY"),
+                listOf(Language("Spanish"),Language("Guaraní")),
+                listOf(RegionalBloc("USAN","Union of South American Nations"))
+            ),
+            Country(
+                "Brazil",
+                "BRA",
+                "Brasília",
+                "Americas",
+                206135893,
+                listOf("ARG","BOL","COL", "GUF", "GUY","PRY","PER","SUR","URY","VEN"),
+                listOf(Language("Portuguese")),
+                listOf(RegionalBloc("USAN","Union of South American Nations"))
+            )
+            ,
+            Country(
+                "Peru",
+                "PER",
+                "Lima",
+                "Americas",
+                31488700,
+                listOf("BOL", "BRA", "CHL", "COL", "ECU"),
+                listOf(Language("Spanish")),
+                listOf(RegionalBloc("PA","Pacific Alliance"),RegionalBloc("USAN","Union of South American Nations"))
+            ),
+            Country(
+                "Spain",
+                "ESP",
+                "Real Madrid",
+                "Europe",
+                46438022,
+                listOf("AND","FRA","GIB","PRT","MAR"),
+                listOf(Language("Spanish")),
+                listOf(RegionalBloc("EU","European Union"))
+            ),
+            Country(
+                "Bolivia (Plurinational State of)",
+                "BOL",
+                "Sucre",
+                "Americas",
+                10985059,
+                listOf("ARG","BRA","CHL","PRY","PER"),
+                listOf(Language("Spanish"), Language("Aymara"), Language("Quechua")),
+                listOf(RegionalBloc("USAN","Union of South American Nations"))
+            ),
+            Country(
+                "China",
+                "CHN",
+                "Beijing",
+                "Asia",
+                1377422166,
+                listOf("AFG", "BTN", "MMR", "HKG", "IND", "KAZ", "PRK", "KGZ", "LAO", "MAC", "MNG", "PAK", "RUS", "TJK", "VNM"),
+                listOf(Language("Chinese")),
+                listOf()
+            ),
+            Country(
+                "India",
+                "IND",
+                "New Delhi",
+                "Asia",
+                1295210000,
+                listOf("AFG", "BGD", "BTN", "MMR", "CHN", "NPL", "PAK", "LKA"),
+                listOf(Language("Hindi"), Language("English")),
+                listOf(RegionalBloc("SAARC","South Asian Association for Regional Cooperation"))
+            ),
+            Country(
+                "United States of America",
+                "USA",
+                "Washington, D.C.",
+                "Americas",
+                323947000,
+                listOf("CAN", "MEX"),
+                listOf(Language("English")),
+                listOf(RegionalBloc("NAFTA","North American Free Trade Agreement"))
+            ),
+            Country(
+                "Indonesia",
+                "IDN",
+                "Jakarta",
+                "Asia",
+                258705000,
+                listOf("TLS", "MYS", "PNG"),
+                listOf(Language("Indonesian")),
+                listOf(RegionalBloc("ASEAN","Association of Southeast Asian Nations"))
+            )
+        )
         describe("Los cinco paises mas poblados son"){
             val listaResultadoOrdenada = listOf("China", "India", "United States of America", "Indonesia", "Brazil")
             observatorio.cincoPaisesConMayorPoblacion().shouldBe(listaResultadoOrdenada)

@@ -6,15 +6,15 @@ import ar.edu.unahur.obj2.impostoresPaises.RestCountriesAPI
 
 val api = RestCountriesAPI()
 
-api.buscarPaisesPorNombre("brazil")
-//
+//api.buscarPaisesPorNombre("brazil")
+
 //api.paisConCodigo("PER")
-//
+
 //api.paisConCodigo("BOL")
-//
-//api.buscarPaisesPorNombre("spa")
-//
-//api.buscarPaisesPorNombre("china")
+
+api.buscarPaisesPorNombre("spa")
+
+api.buscarPaisesPorNombre("china")
 //
 //api.buscarPaisesPorNombre("India")
 //
