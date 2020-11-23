@@ -75,16 +75,16 @@ object Programa{
     }
 
     private fun opcionDosTresCuatro(){
-        entradaSalida.escribirLinea("Ingrese el nombre de un pais")
-        val pais1  = ObsvApi.encontrarPais(entradaSalida.leerLinea())
-        entradaSalida.escribirLinea("Ingrese el nombre de otro pais")
-        var pais2 = ObsvApi.encontrarPais(entradaSalida. leerLinea())
-        while (pais2 == pais1){ // comprobacion de que no son iguales
-            entradaSalida.escribirLinea("No se puede comparar un pais con sigo mismo.")
-            entradaSalida.escribirLinea("Ingrese el nombre de otro pais.")
-            pais2 = ObsvApi.encontrarPais(entradaSalida. leerLinea())
-        }
         try {// intenta hacer la operacion
+            entradaSalida.escribirLinea("Ingrese el nombre de un pais")
+            val pais1  = ObsvApi.encontrarPais(entradaSalida.leerLinea())
+            entradaSalida.escribirLinea("Ingrese el nombre de otro pais")
+            var pais2 = ObsvApi.encontrarPais(entradaSalida. leerLinea())
+            while (pais2 == pais1){ // comprobacion de que no son iguales
+                entradaSalida.escribirLinea("No se puede comparar un pais con sigo mismo.")
+                entradaSalida.escribirLinea("Ingrese el nombre de otro pais.")
+                pais2 = ObsvApi.encontrarPais(entradaSalida. leerLinea())
+            }
             entradaSalida.escribirLinea(  // aca hice magia , y con el mismo metodo , meti las 3 opciones.
                 "los paises ${pais1.name} y ${pais2.name} "+
                         when (opcionMenu) { // segun opcion del menu es la respuesta
@@ -95,7 +95,7 @@ object Programa{
             )
         }
         catch (e: Exception){ // si hay error lo dice
-            entradaSalida.escribirLinea("Se ingreso mal un pais.")
+            entradaSalida.escribirLinea("Se ingreso mal un pais, volvemos al menu.")
         }
         finally { // muestra de nuevo el menu y espera un numero en opcionMenu
             volverAlMenu()
