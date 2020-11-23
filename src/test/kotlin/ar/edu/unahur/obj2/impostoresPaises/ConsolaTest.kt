@@ -22,6 +22,7 @@ class ConsolaTest: DescribeSpec ({
             verify {
                 consola.escribirLinea("Ingrese el nombre de un pais")
                 consola.escribirLinea("El pais Argentina tiene 43590400 habitantes y habla [Spanish, Guaraní]")
+                consola.escribirLinea("¡Gracias por usar nuestro programa!")
             }
         }
 

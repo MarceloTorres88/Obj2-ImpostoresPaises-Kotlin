@@ -79,8 +79,6 @@ class ObservatorioMockkTest : DescribeSpec({
         )
     )
 
-
-
     describe("tercera etapa etapa Etapa"){
 
         describe("Primer requerimiento - Limitrofes ") {
