@@ -11,7 +11,7 @@ class ConsolaTest: DescribeSpec ({
         every { consola.escribirLinea(any()) } just Runs
 
         it("Buscar pais"){
-            every { consola.leerLinea() } returns "1" andThen "arge"
+            every { consola.leerLinea() } returns "1" andThen "arge" andThen "0"
 
             Programa.iniciar()
 
