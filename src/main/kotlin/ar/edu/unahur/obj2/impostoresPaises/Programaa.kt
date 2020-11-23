@@ -9,7 +9,7 @@ object Consolaa {
 }
 
 // El código de nuestro programa, que (eventualmente) interactuará con una persona real
-object Programa {
+object Programaa {
   // Ambas son variables para poder cambiarlas en los tests
   var entradaSalida = Consolaa
   var api = RestCountriesAPI()
