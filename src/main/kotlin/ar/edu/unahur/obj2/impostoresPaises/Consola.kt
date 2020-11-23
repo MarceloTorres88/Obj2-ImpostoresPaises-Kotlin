@@ -72,7 +72,7 @@ object Programa{
     fun opcionDosTresCuatro(){
         escribirLinea("Ingrese el nombre de un pais")
         val pais1  = leerLinea()
-        escribirLinea("Ingrese el nombre de otro un pais")
+        escribirLinea("Ingrese el nombre de otro pais")
         var pais2 = leerLinea()
         while (pais2 == pais1){ // comprobacion de que no son iguales
             escribirLinea("No se puede comparar un pais con sigo mismo.")
@@ -83,7 +83,7 @@ object Programa{
             escribirLinea(  // aca hice magia , y con el mismo metodo , meti las 3 opciones.
                 "los paises $pais1 y $pais2 "+
                         when (opcionMenu) { // segun opcion del menu es la respuesta
-                            2 -> if(ObsvApi.sonLimitrofes(pais1,pais2)){"si"}else{"no"}+ " son limitrofes."+"\n"
+                            2 -> if(ObsvApi.sonLimitrofes(pais1,pais2)){""}else{"no"}+ " son limitrofes."+"\n"
                             3 -> if(ObsvApi.necesitanTraduccion(pais1,pais2)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
                             else -> if(ObsvApi.sonPotencialesAliados(pais1,pais2)){""}else{"no"}+ " son potenciales aliados."+"\n"
                         }
