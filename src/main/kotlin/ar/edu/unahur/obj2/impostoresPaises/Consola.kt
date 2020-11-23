@@ -52,7 +52,7 @@ object Programa{
                 }
             }
         }
-        catch (e: Exception){ // si no se ingresa un numero sale por aca
+        catch (e: Exception){       // si no se ingresa un numero sale por aca
             entradaSalida.escribirLinea("El menu se maneja solo con numeros del 0 al 6")
         }
         finally {
@@ -62,20 +62,20 @@ object Programa{
 
     private fun primeraOpcion() {
         entradaSalida.escribirLinea("Ingrese el nombre de un pais")
-        try { // intenta buscar el pais e imprimir la informacion
+        try {       // intenta buscar el pais e imprimir la informacion
             val pais = ObsvApi.encontrarPais(entradaSalida.leerLinea())
             entradaSalida.escribirLinea("El pais ${pais.name} tiene ${pais.population} habitantes y habla ${pais.languages}")
         }
-        catch (e: Exception){ // si hay error lo dice
+        catch (e: Exception){       // si hay error lo dice
             entradaSalida.escribirLinea("No existe tal pais, volvemos al menu.")
         }
-        finally { // muestra de nuevo el menu y espera un numero en opcionMenu
+        finally {       // muestra de nuevo el menu y espera un numero en opcionMenu
             volverAlMenu()
         }
     }
 
     private fun opcionDosTresCuatro(){
-        try {// intenta hacer la operacion
+        try {       // intenta hacer la operacion
             entradaSalida.escribirLinea("Ingrese el nombre de un pais")
             val pais1  = ObsvApi.encontrarPais(entradaSalida.leerLinea())
             entradaSalida.escribirLinea("Ingrese el nombre de otro pais")
@@ -85,19 +85,19 @@ object Programa{
                 entradaSalida.escribirLinea("Ingrese el nombre de otro pais.")
                 pais2 = ObsvApi.encontrarPais(entradaSalida. leerLinea())
             }
-            entradaSalida.escribirLinea(  // aca hice magia , y con el mismo metodo , meti las 3 opciones.
+            entradaSalida.escribirLinea(        // aca hice magia , y con el mismo metodo , meti las 3 opciones.
                 "los paises ${pais1.name} y ${pais2.name} "+
-                        when (opcionMenu) { // segun opcion del menu es la respuesta
+                        when (opcionMenu) {     // segun opcion del menu es la respuesta
                             2 -> if(ObsvApi.sonLimitrofes(pais1.name,pais2.name)){""}else{"no"}+ " son limitrofes."+"\n"
                             3 -> if(ObsvApi.necesitanTraduccion(pais1.name,pais2.name)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
                             else -> if(ObsvApi.sonPotencialesAliados(pais1.name,pais2.name)){""}else{"no"}+ " son potenciales aliados."+"\n"
                         }
             )
         }
-        catch (e: Exception){ // si hay error lo dice
+        catch (e: Exception){       // si hay error lo dice
             entradaSalida.escribirLinea("Se ingreso mal un pais, volvemos al menu.")
         }
-        finally { // muestra de nuevo el menu y espera un numero en opcionMenu
+        finally {       // muestra de nuevo el menu y espera un numero en opcionMenu
             volverAlMenu()
         }
     }
