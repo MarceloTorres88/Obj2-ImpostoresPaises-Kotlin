@@ -79,6 +79,30 @@ class ConsolaTest: DescribeSpec ({
                     listOf(RegionalBloc("USAN", "Union of South American Nations"))
                 )
             )
+            every { api.buscarPaisesPorNombre("Argentina") } returns listOf(
+                Country(
+                    "Argentina",
+                    "ARG",
+                    "Buenos Aires",
+                    "Americas",
+                    43590400,
+                    listOf("BOL", "BRA", "CHL", "PRY", "URY"),
+                    listOf(Language("Spanish"),Language("Guaraní")),
+                    listOf(RegionalBloc("ARG","Union of South American Nations"))
+                )
+            )
+            every { api.buscarPaisesPorNombre("Brazil") } returns listOf(
+                Country(
+                    "Brazil",
+                    "BRA",
+                    "Brasília",
+                    "Americas",
+                    206135893,
+                    listOf("ARG", "BOL", "COL", "GUF", "GUY", "PRY", "PER", "SUR", "URY", "VEN"),
+                    listOf(Language("Portuguese")),
+                    listOf(RegionalBloc("USAN", "Union of South American Nations"))
+                )
+            )
 
 
             programa.iniciar()
