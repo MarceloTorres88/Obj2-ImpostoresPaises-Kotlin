@@ -10,19 +10,19 @@ object EntradaSalida{
 }
 
 object Programa{
-    var opcionMenu = 0
-    val api = RestCountriesAPI()
-    val ObsvApi = ObservatorioApi(api)
-    var entradaSalida = EntradaSalida
+    private var opcionMenu = 0
+    private val api = RestCountriesAPI()
+    private val ObsvApi = ObservatorioApi(api)
+    var entradaSalida :EntradaSalida = EntradaSalida
 
 
-    fun lineaEnBlanco() = entradaSalida.escribirLinea("")
-    fun leerNumero() = entradaSalida.leerLinea().toInt()
-    fun ingresoOpcionMenu(){ opcionMenu = leerNumero() }
+    private fun lineaEnBlanco() = entradaSalida.escribirLinea("")
+    private fun leerNumero() = entradaSalida.leerLinea().toInt()
+    private fun ingresoOpcionMenu(){ opcionMenu = leerNumero() }
 
     fun iniciar(){ menu() }
 
-    fun menuEscrito(){
+    private fun menuEscrito(){
         lineaEnBlanco()
         entradaSalida.escribirLinea("Menu principal")
         entradaSalida.escribirLinea("Ingrese numero de operacion:")
@@ -36,7 +36,7 @@ object Programa{
         lineaEnBlanco()
     }
 
-    fun menu(){
+    private fun menu(){
         menuEscrito()
         try {
             ingresoOpcionMenu()
@@ -60,7 +60,7 @@ object Programa{
         }
     }
 
-    fun primeraOpcion() {
+    private fun primeraOpcion() {
         entradaSalida.escribirLinea("Ingrese el nombre de un pais")
         try { // intenta buscar el pais e imprimir la informacion
             val pais = ObsvApi.encontrarPais(entradaSalida.leerLinea())
@@ -74,7 +74,7 @@ object Programa{
         }
     }
 
-    fun opcionDosTresCuatro(){
+    private fun opcionDosTresCuatro(){
         entradaSalida.escribirLinea("Ingrese el nombre de un pais")
         val pais1  = ObsvApi.encontrarPais(entradaSalida.leerLinea())
         entradaSalida.escribirLinea("Ingrese el nombre de otro pais")
@@ -102,7 +102,7 @@ object Programa{
         }
     }
 
-    fun quintaOpcion() {
+    private fun quintaOpcion() {
         val listaPaises = ObsvApi.cincoPaisesConMayorPoblacion()
         entradaSalida.escribirLinea("Los 5 paises con mayor poblacion son:")
         entradaSalida.escribirLinea(listaPaises[0])
@@ -113,19 +113,19 @@ object Programa{
         volverAlMenu()
     }
 
-    fun sextaOpcion() {
+    private fun sextaOpcion() {
         entradaSalida.escribirLinea("El continenete mas poblado es:")
         entradaSalida.escribirLinea(ObsvApi.continenteMasPoblado())
         volverAlMenu()
     }
 
-    fun errorReingresoMenu() {
+    private fun errorReingresoMenu() {
         entradaSalida.escribirLinea("Error al seleccionar opcion.")
         entradaSalida.escribirLinea("Ingrese nuevamente.")
         ingresoOpcionMenu()
     }
 
-    fun volverAlMenu(){
+    private fun volverAlMenu(){
         menuEscrito()
         ingresoOpcionMenu()
     }
