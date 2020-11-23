@@ -1,6 +1,6 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
+class ObservatorioApi(private var api: RestCountriesAPI = RestCountriesAPI()) {
 // Usamos la forma de hacer peticiones a la api por cada requerimiento por sobre
 // la forma de cargar en por init() todos los paises y consultar la lista
 // por que se dificultaba el uso del usuario en la consola, ya que esta requeria que los paises
