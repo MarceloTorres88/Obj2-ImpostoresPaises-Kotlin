@@ -10,18 +10,6 @@ class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
     fun encontrarPais(pais: String) : Pais =
         AdapterCountry( api.buscarPaisesPorNombre(pais).first() )
 
-    fun cincoPaisesConMayorPoblacion()= api.todosLosPaises()
-        .sortedByDescending { it.population }  //ordena los paises por poblacion de forma descenente
-        .map{it.name} // solo deja los nombres ordenados
-        .take(5) // toma los primeros 5
-
-
-    fun continenteMasPoblado() : String =
-        api.todosLosPaises().groupBy { it.region }. // agrupo paises por contienete
-        mapValues{ pais -> pais.value.sumOf { it.population }}. // sumo las poblaciones de los paises en cada contiente
-        maxByOrNull { it.value }!!.key // devuelvo la key del continente mas poblado
-
-
     fun sonLimitrofes(pais1: String, pais2: String): Boolean {
         val paisUno = this.encontrarPais(pais1)
         val paisDos = this.encontrarPais(pais2)
@@ -42,4 +30,14 @@ class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
 
         return paisUno.sonPotencialesAliados(paisDos)
     }
+
+    fun cincoPaisesConMayorPoblacion()=
+        api.todosLosPaises().sortedByDescending { it.population }.map{it.name}.take(5)
+
+
+    fun continenteMasPoblado() : String =
+        api.todosLosPaises().groupBy { it.region }. // agrupo paises por contienete
+        mapValues{ pais -> pais.value.sumOf { it.population }}. // sumo las poblaciones de los paises en cada contiente
+        maxByOrNull { it.value }!!.key // devuelvo la key del continente mas poblado
+
 }
