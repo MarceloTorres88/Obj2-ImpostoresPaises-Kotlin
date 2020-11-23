@@ -5,11 +5,11 @@ import io.mockk.*
 
 class ProgramaTest : DescribeSpec({
   describe("Programa") {
-    val consolaMock = mockk<Consolaa>()
+    val consolaMock = mockk<EntradaSalida>()
 
     // Configuramos un mock para la entrada salida
     // TODO: hacer lo mismo para la RestCountriesAPI
-    Programaa.entradaSalida = consolaMock
+    Programa.entradaSalida = consolaMock
 
     // Indicamos que los llamados a `escribirLinea` no hacen nada (just Runs)
     every { consolaMock.escribirLinea(any()) } just Runs
@@ -18,14 +18,14 @@ class ProgramaTest : DescribeSpec({
       // Cuando se llame a `leerLinea()`, simulamos que el/la usuaria escribió "thailand".
       // Notar que esto lo configuramos *antes* de iniciar el programa,
       // para que cuando efectivamente se llame al método ya el mock sepa qué tiene que hacer.
-      every { consolaMock.leerLinea() } returns "thailand"
+      every { consolaMock.leerLinea() } returns "1"
 
       // Iniciamos el programa
-      Programaa.iniciar()
+      Programa.iniciar()
 
       // Verificamos que se escribió "por pantalla" el resultado esperado
       verify {
-        consolaMock.escribirLinea("Thailand (THA) es un país de Asia, con una población de 65327652 habitantes.")
+        consolaMock.escribirLinea("Ingrese el nombre de un pais")
       }
     }
   }

@@ -4,30 +4,35 @@ fun main () {
     Programa.iniciar()
 }
 
+object EntradaSalida{
+    fun leerLinea() = readLine()!!
+    fun escribirLinea(contenido: String) { println(contenido) }
+}
+
 object Programa{
     var opcionMenu = 0
     val api = RestCountriesAPI()
     val ObsvApi = ObservatorioApi(api)
+    var entradaSalida = EntradaSalida
 
-    fun leerLinea() = readLine()!!
-    fun escribirLinea(contenido: String) { println(contenido) }
-    fun lineaEnBlanco() = escribirLinea("")
-    fun leerNumero() = leerLinea().toInt()
+
+    fun lineaEnBlanco() = entradaSalida.escribirLinea("")
+    fun leerNumero() = entradaSalida.leerLinea().toInt()
     fun ingresoOpcionMenu(){ opcionMenu = leerNumero() }
 
     fun iniciar(){ menu() }
 
     fun menuEscrito(){
         lineaEnBlanco()
-        escribirLinea("Menu principal")
-        escribirLinea("Ingrese numero de operacion:")
-        escribirLinea("1 - Info de un pais.")
-        escribirLinea("2 - Paises limitrofes.")
-        escribirLinea("3 - Paises que pueden dialogar sin interprete.")
-        escribirLinea("4 - Paises potenciales aliados.")
-        escribirLinea("5 - Los 5 paises con mayor poblacion.")
-        escribirLinea("6 - Contiente mas poblado.")
-        escribirLinea("0 - Salir")
+        entradaSalida.escribirLinea("Menu principal")
+        entradaSalida.escribirLinea("Ingrese numero de operacion:")
+        entradaSalida.escribirLinea("1 - Info de un pais.")
+        entradaSalida. escribirLinea("2 - Paises limitrofes.")
+        entradaSalida. escribirLinea("3 - Paises que pueden dialogar sin interprete.")
+        entradaSalida. escribirLinea("4 - Paises potenciales aliados.")
+        entradaSalida. escribirLinea("5 - Los 5 paises con mayor poblacion.")
+        entradaSalida. escribirLinea("6 - Contiente mas poblado.")
+        entradaSalida. escribirLinea("0 - Salir")
         lineaEnBlanco()
     }
 
@@ -48,21 +53,21 @@ object Programa{
             }
         }
         catch (e: Exception){ // si no se ingresa un numero sale por aca
-            escribirLinea("El menu se maneja solo con numeros del 0 al 6")
+            entradaSalida. escribirLinea("El menu se maneja solo con numeros del 0 al 6")
         }
         finally {
-            escribirLinea("¡Gracias por usar nuestro programa!")
+            entradaSalida. escribirLinea("¡Gracias por usar nuestro programa!")
         }
     }
 
     fun primeraOpcion() {
-        escribirLinea("Ingrese el nombre de un pais")
+        entradaSalida. escribirLinea("Ingrese el nombre de un pais")
         try { // intenta buscar el pais e imprimir la informacion
-            val pais = ObsvApi.encontrarPais(leerLinea())
-            escribirLinea("El pais ${pais.name} tiene ${pais.population} habitantes y habla ${pais.languages}")
+            val pais = ObsvApi.encontrarPais(entradaSalida.leerLinea())
+            entradaSalida. escribirLinea("El pais ${pais.name} tiene ${pais.population} habitantes y habla ${pais.languages}")
         }
         catch (e: Exception){ // si hay error lo dice
-            escribirLinea("No existe tal pais, volvemos al menu.")
+            entradaSalida. escribirLinea("No existe tal pais, volvemos al menu.")
         }
         finally { // muestra de nuevo el menu y espera un numero en opcionMenu
             volverAlMenu()
@@ -70,17 +75,17 @@ object Programa{
     }
 
     fun opcionDosTresCuatro(){
-        escribirLinea("Ingrese el nombre de un pais")
-        val pais1  = leerLinea()
-        escribirLinea("Ingrese el nombre de otro pais")
-        var pais2 = leerLinea()
+        entradaSalida. escribirLinea("Ingrese el nombre de un pais")
+        val pais1  = entradaSalida.leerLinea()
+        entradaSalida. escribirLinea("Ingrese el nombre de otro pais")
+        var pais2 =entradaSalida. leerLinea()
         while (pais2 == pais1){ // comprobacion de que no son iguales
-            escribirLinea("No se puede comparar un pais con sigo mismo.")
-            escribirLinea("Ingrese el nombre de otro pais.")
-            pais2 = leerLinea()
+            entradaSalida. escribirLinea("No se puede comparar un pais con sigo mismo.")
+            entradaSalida. escribirLinea("Ingrese el nombre de otro pais.")
+            pais2 = entradaSalida.leerLinea()
         }
         try {// intenta hacer la operacion
-            escribirLinea(  // aca hice magia , y con el mismo metodo , meti las 3 opciones.
+            entradaSalida. escribirLinea(  // aca hice magia , y con el mismo metodo , meti las 3 opciones.
                 "los paises $pais1 y $pais2 "+
                         when (opcionMenu) { // segun opcion del menu es la respuesta
                             2 -> if(ObsvApi.sonLimitrofes(pais1,pais2)){""}else{"no"}+ " son limitrofes."+"\n"
@@ -90,7 +95,7 @@ object Programa{
             )
         }
         catch (e: Exception){ // si hay error lo dice
-            escribirLinea("Se ingreso algun pais mal.")
+            entradaSalida.escribirLinea("Se ingreso algun pais mal.")
         }
         finally { // muestra de nuevo el menu y espera un numero en opcionMenu
             volverAlMenu()
@@ -99,24 +104,24 @@ object Programa{
 
     fun quintaOpcion() {
         val listaPaises = ObsvApi.cincoPaisesConMayorPoblacion()
-        escribirLinea("Los 5 paises con mayor poblacion son:")
-        escribirLinea(listaPaises[0])
-        escribirLinea(listaPaises[1])
-        escribirLinea(listaPaises[2])
-        escribirLinea(listaPaises[3])
-        escribirLinea(listaPaises[4])
+        entradaSalida.escribirLinea("Los 5 paises con mayor poblacion son:")
+        entradaSalida. escribirLinea(listaPaises[0])
+        entradaSalida. escribirLinea(listaPaises[1])
+        entradaSalida. escribirLinea(listaPaises[2])
+        entradaSalida. escribirLinea(listaPaises[3])
+        entradaSalida. escribirLinea(listaPaises[4])
         volverAlMenu()
     }
 
     fun sextaOpcion() {
-        escribirLinea("El continenete mas poblado es:")
-        escribirLinea(ObsvApi.continenteMasPoblado())
+        entradaSalida. escribirLinea("El continenete mas poblado es:")
+        entradaSalida. escribirLinea(ObsvApi.continenteMasPoblado())
         volverAlMenu()
     }
 
     fun errorReingresoMenu() {
-        escribirLinea("Error al seleccionar opcion.")
-        escribirLinea("Ingrese nuevamente.")
+        entradaSalida. escribirLinea("Error al seleccionar opcion.")
+        entradaSalida. escribirLinea("Ingrese nuevamente.")
         ingresoOpcionMenu()
     }
 
