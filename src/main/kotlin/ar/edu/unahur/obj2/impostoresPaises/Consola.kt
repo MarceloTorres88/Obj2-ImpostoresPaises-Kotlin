@@ -103,20 +103,34 @@ object Programa{
     }
 
     private fun quintaOpcion() {
-        val listaPaises = ObsvApi.cincoPaisesConMayorPoblacion()
-        entradaSalida.escribirLinea("Los 5 paises con mayor poblacion son:")
-        entradaSalida.escribirLinea(listaPaises[0])
-        entradaSalida.escribirLinea(listaPaises[1])
-        entradaSalida.escribirLinea(listaPaises[2])
-        entradaSalida.escribirLinea(listaPaises[3])
-        entradaSalida.escribirLinea(listaPaises[4])
-        volverAlMenu()
+        try {
+            val listaPaises = ObsvApi.cincoPaisesConMayorPoblacion()
+            entradaSalida.escribirLinea("Los 5 paises con mayor poblacion son:")
+            entradaSalida.escribirLinea(listaPaises[0])
+            entradaSalida.escribirLinea(listaPaises[1])
+            entradaSalida.escribirLinea(listaPaises[2])
+            entradaSalida.escribirLinea(listaPaises[3])
+            entradaSalida.escribirLinea(listaPaises[4])
+        }
+        catch (e: Exception){
+            entradaSalida.escribirLinea("Hubo un error con la api.")
+        }
+        finally {
+            volverAlMenu()
+        }
     }
 
     private fun sextaOpcion() {
-        entradaSalida.escribirLinea("El continenete mas poblado es:")
-        entradaSalida.escribirLinea(ObsvApi.continenteMasPoblado())
-        volverAlMenu()
+        try {
+            entradaSalida.escribirLinea("El continenete mas poblado es:")
+            entradaSalida.escribirLinea(ObsvApi.continenteMasPoblado())
+        }
+        catch (e: Exception){
+            entradaSalida.escribirLinea("Hubo un error con la api.")
+        }
+        finally {
+            volverAlMenu()
+        }
     }
 
     private fun errorReingresoMenu() {
