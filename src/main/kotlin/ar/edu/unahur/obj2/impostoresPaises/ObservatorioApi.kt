@@ -8,10 +8,12 @@ class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
 // EJ: bolivia (caso peticiones api) <-> Bolivia (Plurinational State of) (caso peticiones lista)
 
     fun encontrarPais(pais: String) : Pais =
-        api.buscarPaisesPorNombre(pais).map { AdapterCountry(it) }.first()
+        AdapterCountry( api.buscarPaisesPorNombre(pais).first() )
 
-    fun cincoPaisesConMayorPoblacion()=
-        api.todosLosPaises().sortedByDescending { it.population }.map{it.name}.take(5)
+    fun cincoPaisesConMayorPoblacion()= api.todosLosPaises()
+        .sortedByDescending { it.population }  //ordena los paises por poblacion de forma descenente
+        .map{it.name} // solo deja los nombres ordenados
+        .take(5) // toma los primeros 5
 
 
     fun continenteMasPoblado() : String =
@@ -21,23 +23,23 @@ class ObservatorioApi(var api: RestCountriesAPI = RestCountriesAPI()) {
 
 
     fun sonLimitrofes(pais1: String, pais2: String): Boolean {
-        val aux1 = this.encontrarPais(pais1)
-        val aux2 = this.encontrarPais(pais2)
+        val paisUno = this.encontrarPais(pais1)
+        val paisDos = this.encontrarPais(pais2)
 
-        return aux1.esLimitrofeCon(aux2)
+        return paisUno.esLimitrofeCon(paisDos)
     }
 
     fun necesitanTraduccion(pais1: String, pais2: String): Boolean {
-        val aux1 = this.encontrarPais(pais1)
-        val aux2 = this.encontrarPais(pais2)
+        val paisUno = this.encontrarPais(pais1)
+        val paisDos = this.encontrarPais(pais2)
 
-        return aux1.necesitaTraductorCon(aux2)
+        return paisUno.necesitaTraductorCon(paisDos)
     }
 
     fun sonPotencialesAliados(pais1: String, pais2: String): Boolean {
-        val aux1 = this.encontrarPais(pais1)
-        val aux2 = this.encontrarPais(pais2)
+        val paisUno = this.encontrarPais(pais1)
+        val paisDos = this.encontrarPais(pais2)
 
-        return aux1.sonPotencialesAliados(aux2)
+        return paisUno.sonPotencialesAliados(paisDos)
     }
 }
