@@ -12,7 +12,7 @@ object Programa{
     fun leerLinea() = readLine()!!
     fun escribirLinea(contenido: String) { println(contenido) }
     fun lineaEnBlanco() = escribirLinea("")
-    fun leerNumero() = readLine()!!.toInt()
+    fun leerNumero() = leerLinea().toInt()
     fun ingresoOpcionMenu(){ opcionMenu = leerNumero() }
 
     fun iniciar(){ menu() }
@@ -34,7 +34,7 @@ object Programa{
     fun menu(){
         menuEscrito()
         try {
-            ingresoOpcionMenu() // ingresa el valor
+            ingresoOpcionMenu()
             while (opcionMenu != 0){ // con esto se queda en el menu resolviendo todas las consultas que quiera hasta que tiren el 0
                 when (opcionMenu) {
                     1 -> primeraOpcion()
@@ -58,13 +58,13 @@ object Programa{
     fun primeraOpcion() {
         escribirLinea("Ingrese el nombre de un pais")
         try { // intenta buscar el pais e imprimir la informacion
-            val pais1 = ObsvApi.encontrarPais(leerLinea())
-            escribirLinea("El pais ${pais1.name} tiene ${pais1.population} habitantes y habla ${pais1.languages}"+"\n")
+            val pais = ObsvApi.encontrarPais(leerLinea())
+            escribirLinea("El pais ${pais.name} tiene ${pais.population} habitantes y habla ${pais.languages}")
         }
         catch (e: Exception){ // si hay error lo dice
             escribirLinea("No existe tal pais, volvemos al menu.")
         }
-        finally {// sale al menu.
+        finally { // muestra de nuevo el menu y espera un numero en opcionMenu
             volverAlMenu()
         }
     }
@@ -92,13 +92,13 @@ object Programa{
         catch (e: Exception){ // si hay error lo dice
             escribirLinea("Se ingreso algun pais mal.")
         }
-        finally {
+        finally { // muestra de nuevo el menu y espera un numero en opcionMenu
             volverAlMenu()
         }
     }
 
     fun quintaOpcion() {
-        val listaPaises = Programa.ObsvApi.cincoPaisesConMayorPoblacion()
+        val listaPaises = ObsvApi.cincoPaisesConMayorPoblacion()
         escribirLinea("Los 5 paises con mayor poblacion son:")
         escribirLinea(listaPaises[0])
         escribirLinea(listaPaises[1])
