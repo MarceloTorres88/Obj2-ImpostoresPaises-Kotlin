@@ -95,7 +95,7 @@ object Programa{
             )
         }
         catch (e: Exception){ // si hay error lo dice
-            entradaSalida.escribirLinea("Se ingreso algun pais mal.")
+            entradaSalida.escribirLinea("Se ingreso mal un pais.")
         }
         finally { // muestra de nuevo el menu y espera un numero en opcionMenu
             volverAlMenu()
