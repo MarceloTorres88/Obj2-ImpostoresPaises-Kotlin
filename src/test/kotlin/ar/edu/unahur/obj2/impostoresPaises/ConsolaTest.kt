@@ -6,7 +6,9 @@ import io.mockk.*
 class ConsolaTest: DescribeSpec ({
     describe("Consola"){
         val consola = mockk<EntradaSalida>()
-        Programa.entradaSalida = consola
+        val api = mockk<RestCountriesAPI>()
+        val programa = Programa(api)
+        programa.entradaSalida = consola
 
         every { consola.escribirLinea(any()) } just Runs
 
@@ -16,8 +18,20 @@ class ConsolaTest: DescribeSpec ({
             //se ingrese "arge" y buscar argentina
             // y luego devuelve el 0 para salir del menu o cerrar programa
             every { consola.leerLinea() } returns "1" andThen "arge" andThen "0"
+            every { api.buscarPaisesPorNombre("arge") } returns listOf(
+                Country(
+                    "Argentina",
+                    "ARG",
+                    "Buenos Aires",
+                    "Americas",
+                    43590400,
+                    listOf("BOL", "BRA", "CHL", "PRY", "URY"),
+                    listOf(Language("Spanish"),Language("Guaraní")),
+                    listOf(RegionalBloc("ARG","Union of South American Nations"))
+                )
+            )
 
-            Programa.iniciar()
+            programa.iniciar()
 
             verify {
                 consola.escribirLinea("Ingrese el nombre de un pais")
@@ -29,7 +43,7 @@ class ConsolaTest: DescribeSpec ({
         it("Busca pero no encuentra el pais"){
             every { consola.leerLinea() } returns "1" andThen "argetune" andThen "0"
 
-            Programa.iniciar()
+            programa.iniciar()
 
             verify {
                 consola.escribirLinea("No existe tal pais, volvemos al menu.")
@@ -39,22 +53,48 @@ class ConsolaTest: DescribeSpec ({
 
         it("Son limitrofes"){
             every { consola.leerLinea() } returns "2" andThen "arge" andThen  "bra" andThen "0"
+            every { api.buscarPaisesPorNombre("arge") } returns listOf(
+                Country(
+                    "Argentina",
+                    "ARG",
+                    "Buenos Aires",
+                    "Americas",
+                    43590400,
+                    listOf("BOL", "BRA", "CHL", "PRY", "URY"),
+                    listOf(Language("Spanish"),Language("Guaraní")),
+                    listOf(RegionalBloc("ARG","Union of South American Nations"))
+                )
+            )
+            every { api.buscarPaisesPorNombre("bra") } returns listOf(
+                Country(
+                    "Brazil",
+                    "BRA",
+                    "Brasília",
+                    "Americas",
+                    206135893,
+                    listOf("ARG", "BOL", "COL", "GUF", "GUY", "PRY", "PER", "SUR", "URY", "VEN"),
+                    listOf(Language("Portuguese")),
+                    listOf(RegionalBloc("USAN", "Union of South American Nations"))
+                )
+            )
 
-            Programa.iniciar()
+
+            programa.iniciar()
+
 
             verify {
                 consola.escribirLinea("Ingrese el nombre de un pais")
                 consola.escribirLinea("Ingrese el nombre de otro pais")
                 //en el caso de nuestra opcion 2, siempre hace un enter despues de cada linea
                 consola.escribirLinea("los paises Argentina y Brazil  son limitrofes."+"\n")
-                consola.escribirLinea("¡Gracias por usar nuestro programa!")
+//                consola.escribirLinea("¡Gracias por usar nuestro programa!")
             }
         }
 
         it("Opcion 2 se ingreso mal un pais"){
             every { consola.leerLinea() } returns "2" andThen "argola" andThen "0"
 
-            Programa.iniciar()
+            programa.iniciar()
 
             verify {
                 consola.escribirLinea("Ingrese el nombre de un pais")
@@ -65,8 +105,20 @@ class ConsolaTest: DescribeSpec ({
 
         it("Continente mas poblado"){
             every { consola.leerLinea() } returns "6" andThen "0"
+            every { api.todosLosPaises() } returns listOf(
+                Country(
+                    "Indonesia",
+                    "IDN",
+                    "Jakarta",
+                    "Asia",
+                    258705000,
+                    listOf("TLS", "MYS", "PNG"),
+                    listOf(Language("Indonesian")),
+                    listOf(RegionalBloc("ASEAN","Association of Southeast Asian Nations"))
+                )
+            )
 
-            Programa.iniciar()
+            programa.iniciar()
 
             verify {
                 consola.escribirLinea("El continenete mas poblado es:")

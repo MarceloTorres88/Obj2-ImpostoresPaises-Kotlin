@@ -1,7 +1,7 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
 fun main () {
-    Programa.iniciar()
+    Programa(api = RestCountriesAPI()).iniciar()
 }
 
 object EntradaSalida{
@@ -9,10 +9,9 @@ object EntradaSalida{
     fun escribirLinea(contenido: String) { println(contenido) }
 }
 
-object Programa{
+class Programa (api: RestCountriesAPI = RestCountriesAPI()){
     private var opcionMenu = 0
-    private val api = RestCountriesAPI()
-    private val ObsvApi = ObservatorioApi(api)
+    val ObsvApi = ObservatorioApi(api)
     var entradaSalida :EntradaSalida = EntradaSalida
 
 
