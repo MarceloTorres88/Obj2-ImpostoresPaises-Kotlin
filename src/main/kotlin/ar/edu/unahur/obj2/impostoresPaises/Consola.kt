@@ -76,23 +76,21 @@ object Programa{
 
     fun opcionDosTresCuatro(){
         entradaSalida.escribirLinea("Ingrese el nombre de un pais")
-        val pais1  = entradaSalida.leerLinea()
+        val pais1  = ObsvApi.encontrarPais(entradaSalida.leerLinea())
         entradaSalida.escribirLinea("Ingrese el nombre de otro pais")
-        var pais2 =entradaSalida. leerLinea()
+        var pais2 = ObsvApi.encontrarPais(entradaSalida. leerLinea())
         while (pais2 == pais1){ // comprobacion de que no son iguales
             entradaSalida.escribirLinea("No se puede comparar un pais con sigo mismo.")
             entradaSalida.escribirLinea("Ingrese el nombre de otro pais.")
-            pais2 = entradaSalida.leerLinea()
+            pais2 = ObsvApi.encontrarPais(entradaSalida. leerLinea())
         }
         try {// intenta hacer la operacion
-            val paisUno = ObsvApi.encontrarPais(entradaSalida.leerLinea())
-            val paisDos = ObsvApi.encontrarPais(entradaSalida.leerLinea())
             entradaSalida.escribirLinea(  // aca hice magia , y con el mismo metodo , meti las 3 opciones.
-                "los paises ${paisUno.name} y ${paisDos.name} "+
+                "los paises ${pais1.name} y ${pais2.name} "+
                         when (opcionMenu) { // segun opcion del menu es la respuesta
-                            2 -> if(ObsvApi.sonLimitrofes(pais1,pais2)){""}else{"no"}+ " son limitrofes."+"\n"
-                            3 -> if(ObsvApi.necesitanTraduccion(pais1,pais2)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
-                            else -> if(ObsvApi.sonPotencialesAliados(pais1,pais2)){""}else{"no"}+ " son potenciales aliados."+"\n"
+                            2 -> if(ObsvApi.sonLimitrofes(pais1.name,pais2.name)){""}else{"no"}+ " son limitrofes."+"\n"
+                            3 -> if(ObsvApi.necesitanTraduccion(pais1.name,pais2.name)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
+                            else -> if(ObsvApi.sonPotencialesAliados(pais1.name,pais2.name)){""}else{"no"}+ " son potenciales aliados."+"\n"
                         }
             )
         }
