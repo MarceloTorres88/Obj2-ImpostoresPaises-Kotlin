@@ -113,7 +113,7 @@ object Programa{
             entradaSalida.escribirLinea(listaPaises[4])
         }
         catch (e: Exception){
-            entradaSalida.escribirLinea("Hubo un error con la api.")
+            entradaSalida.escribirLinea("Hubo un error con la api, volvemos al menu.")
         }
         finally {
             volverAlMenu()
@@ -126,7 +126,7 @@ object Programa{
             entradaSalida.escribirLinea(ObsvApi.continenteMasPoblado())
         }
         catch (e: Exception){
-            entradaSalida.escribirLinea("Hubo un error con la api.")
+            entradaSalida.escribirLinea("Hubo un error con la api, volvemos al menu.")
         }
         finally {
             volverAlMenu()
