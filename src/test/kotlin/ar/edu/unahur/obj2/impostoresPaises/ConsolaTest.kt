@@ -43,7 +43,7 @@ class ConsolaTest: DescribeSpec ({
             verify {
                 consola.escribirLinea("Ingrese el nombre de un pais")
                 consola.escribirLinea("Ingrese el nombre de otro pais")
-                consola.escribirLinea("los paises Argentina y Brazil  son limitrofes.")
+                consola.escribirLinea("los paises Argentina y Brazil  son limitrofes."+"\n")
             }
         }
 
