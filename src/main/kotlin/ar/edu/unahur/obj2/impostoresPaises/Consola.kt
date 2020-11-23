@@ -1,6 +1,5 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-
 object Consola{ // solo para guardar un numero y que sea alcanzable por todas las opciones
     var opcionMenu = 0
     val api = RestCountriesAPI()
@@ -11,7 +10,6 @@ object Consola{ // solo para guardar un numero y que sea alcanzable por todas la
     fun leerNumero() = readLine()!!.toInt()
     fun ingresoOpcionMenu(){ opcionMenu = leerNumero() }
 }
-
 
 fun main () {
     correrMenu()
