@@ -85,8 +85,10 @@ object Programa{
             pais2 = entradaSalida.leerLinea()
         }
         try {// intenta hacer la operacion
+            val paisUno = ObsvApi.encontrarPais(entradaSalida.leerLinea())
+            val paisDos = ObsvApi.encontrarPais(entradaSalida.leerLinea())
             entradaSalida.escribirLinea(  // aca hice magia , y con el mismo metodo , meti las 3 opciones.
-                "los paises $pais1 y $pais2 "+
+                "los paises ${paisUno.name} y ${paisDos.name} "+
                         when (opcionMenu) { // segun opcion del menu es la respuesta
                             2 -> if(ObsvApi.sonLimitrofes(pais1,pais2)){""}else{"no"}+ " son limitrofes."+"\n"
                             3 -> if(ObsvApi.necesitanTraduccion(pais1,pais2)){"no"}else{""}+ " pueden dialogar sin interprete."+"\n"
