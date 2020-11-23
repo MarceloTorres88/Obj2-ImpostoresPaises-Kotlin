@@ -80,7 +80,7 @@ object Programa{
             val pais1  = ObsvApi.encontrarPais(entradaSalida.leerLinea())
             entradaSalida.escribirLinea("Ingrese el nombre de otro pais")
             var pais2 = ObsvApi.encontrarPais(entradaSalida. leerLinea())
-            while (pais2 == pais1){ // comprobacion de que no son iguales
+            while (pais2.name == pais1.name){ // comprobacion de que no son iguales
                 entradaSalida.escribirLinea("No se puede comparar un pais con sigo mismo.")
                 entradaSalida.escribirLinea("Ingrese el nombre de otro pais.")
                 pais2 = ObsvApi.encontrarPais(entradaSalida. leerLinea())

@@ -33,6 +33,7 @@ class ConsolaTest: DescribeSpec ({
 
             verify {
                 consola.escribirLinea("No existe tal pais, volvemos al menu.")
+                consola.escribirLinea("¡Gracias por usar nuestro programa!")
             }
         }
 
@@ -46,6 +47,7 @@ class ConsolaTest: DescribeSpec ({
                 consola.escribirLinea("Ingrese el nombre de otro pais")
                 //en el caso de nuestra opcion 2, siempre hace un enter despues de cada linea
                 consola.escribirLinea("los paises Argentina y Brazil  son limitrofes."+"\n")
+                consola.escribirLinea("¡Gracias por usar nuestro programa!")
             }
         }
 
@@ -57,6 +59,7 @@ class ConsolaTest: DescribeSpec ({
             verify {
                 consola.escribirLinea("Ingrese el nombre de un pais")
                 consola.escribirLinea("Se ingreso mal un pais, volvemos al menu.")
+                consola.escribirLinea("¡Gracias por usar nuestro programa!")
             }
         }
 
@@ -68,6 +71,7 @@ class ConsolaTest: DescribeSpec ({
             verify {
                 consola.escribirLinea("El continenete mas poblado es:")
                 consola.escribirLinea("Asia")
+                consola.escribirLinea("¡Gracias por usar nuestro programa!")
             }
         }
 
