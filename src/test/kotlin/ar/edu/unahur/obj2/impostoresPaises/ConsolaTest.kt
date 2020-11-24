@@ -11,6 +11,30 @@ class ConsolaTest: DescribeSpec ({
         programa.entradaSalida = consola
 
         every { consola.escribirLinea(any()) } just Runs
+        every { api.buscarPaisesPorNombre("Argentina") } returns listOf(
+            Country(
+                "Argentina",
+                "ARG",
+                "Buenos Aires",
+                "Americas",
+                43590400,
+                listOf("BOL", "BRA", "CHL", "PRY", "URY"),
+                listOf(Language("Spanish"),Language("Guaraní")),
+                listOf(RegionalBloc("ARG","Union of South American Nations"))
+            )
+        )
+        every { api.buscarPaisesPorNombre("Brazil") } returns listOf(
+            Country(
+                "Brazil",
+                "BRA",
+                "Brasília",
+                "Americas",
+                206135893,
+                listOf("ARG", "BOL", "COL", "GUF", "GUY", "PRY", "PER", "SUR", "URY", "VEN"),
+                listOf(Language("Portuguese")),
+                listOf(RegionalBloc("USAN", "Union of South American Nations"))
+            )
+        )
 
         it("Buscar pais"){
             //la consola lee la opcion 1 .... buscar informacion de pais
@@ -54,19 +78,7 @@ class ConsolaTest: DescribeSpec ({
         }
 
         it("Son limitrofes"){
-            every { consola.leerLinea() } returns "2" andThen "arge" andThen  "bra" andThen "0"
-            every { api.buscarPaisesPorNombre("arge") } returns listOf(
-                Country(
-                    "Argentina",
-                    "ARG",
-                    "Buenos Aires",
-                    "Americas",
-                    43590400,
-                    listOf("BOL", "BRA", "CHL", "PRY", "URY"),
-                    listOf(Language("Spanish"),Language("Guaraní")),
-                    listOf(RegionalBloc("ARG","Union of South American Nations"))
-                )
-            )
+            every { consola.leerLinea() } returns "2" andThen "Argentina" andThen  "bra" andThen "0"
             every { api.buscarPaisesPorNombre("bra") } returns listOf(
                 Country(
                     "Brazil",
@@ -79,31 +91,6 @@ class ConsolaTest: DescribeSpec ({
                     listOf(RegionalBloc("USAN", "Union of South American Nations"))
                 )
             )
-            every { api.buscarPaisesPorNombre("Argentina") } returns listOf(
-                Country(
-                    "Argentina",
-                    "ARG",
-                    "Buenos Aires",
-                    "Americas",
-                    43590400,
-                    listOf("BOL", "BRA", "CHL", "PRY", "URY"),
-                    listOf(Language("Spanish"),Language("Guaraní")),
-                    listOf(RegionalBloc("ARG","Union of South American Nations"))
-                )
-            )
-            every { api.buscarPaisesPorNombre("Brazil") } returns listOf(
-                Country(
-                    "Brazil",
-                    "BRA",
-                    "Brasília",
-                    "Americas",
-                    206135893,
-                    listOf("ARG", "BOL", "COL", "GUF", "GUY", "PRY", "PER", "SUR", "URY", "VEN"),
-                    listOf(Language("Portuguese")),
-                    listOf(RegionalBloc("USAN", "Union of South American Nations"))
-                )
-            )
-
 
             programa.iniciar()
 
