@@ -1,26 +1,38 @@
 
+import ar.edu.unahur.obj2.impostoresPaises.CovidApi
 import ar.edu.unahur.obj2.impostoresPaises.RestCountriesAPI
+import io.mockk.InternalPlatformDsl.toStr
+
+
+val covidapi = CovidApi()
+
+//https://api.covid19api.com/country/argentina/status/confirmed?from=2020-09-08T00:00:00Z&to=2020-09-09T00:00:00Z
+covidapi.fechaMas1Dia("2020-09-08T00:00:00Z")
+covidapi.buscarCasosPorPaisPorFecha("argentina", "2020-09-08T00:00:00Z")
+covidapi.prueba()
 
 // Algunos ejemplos para que jueguen un poco
 // con lo que devuelve la API
 
-val api = RestCountriesAPI()
-
-api.buscarPaisesPorNombre("brazil")
+//val api = RestCountriesAPI()
+//
+//api.buscarPaisesPorNombre("russ")
+//
+//api.buscarPaisesPorNombre("brazil")
 
 //api.paisConCodigo("PER")
 
 //api.paisConCodigo("BOL")
 
-api.buscarPaisesPorNombre("spa")
+//api.buscarPaisesPorNombre("spa")
 
-api.buscarPaisesPorNombre("china")
+//api.buscarPaisesPorNombre("china")
 //
-api.buscarPaisesPorNombre("India")
+//api.buscarPaisesPorNombre("India")
 //
-api.buscarPaisesPorNombre("united states of america")
+//api.buscarPaisesPorNombre("united states of america")
 //
-api.buscarPaisesPorNombre("nigeria")
+//api.buscarPaisesPorNombre("nigeria")
 //
 //
 
@@ -48,3 +60,4 @@ api.buscarPaisesPorNombre("nigeria")
 //d
 
 //api.todosLosPaises()
+
