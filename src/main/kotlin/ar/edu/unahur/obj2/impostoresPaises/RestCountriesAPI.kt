@@ -11,8 +11,8 @@ import java.lang.reflect.Type
 // Pueden mirar cómo está hecho si les da curiosidad,
 // pero no pueden cambiar absolutamente nada de este archivo.
 
-class RestCountriesAPI {
-  private val urlBase = "https://restcountries.eu/rest/v2"
+open class RestCountriesAPI {
+  open val urlBase = "https://restcountries.eu/rest/v2"
   private val client = OkHttpClient()
   private val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
@@ -55,6 +55,7 @@ class RestCountriesAPI {
 data class Country(
     val name: String,
     val alpha3Code: String,
+    val alpha2Code: String,
     val capital: String,
     val region: String,
     val population: Long,
@@ -71,3 +72,22 @@ data class RegionalBloc(
   val acronym: String,
   val name: String
 )
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class CovidApi : RestCountriesAPI() {
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
+
+    override fun toString(): String {
+        return super.toString()
+    }
+
+    override val urlBase: String = "https://api.covid19api.com/countries"
+
+}

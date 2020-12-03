@@ -15,6 +15,7 @@ class ConsolaTest: DescribeSpec ({
             Country(
                 "Argentina",
                 "ARG",
+                "AR",
                 "Buenos Aires",
                 "Americas",
                 43590400,
@@ -27,6 +28,7 @@ class ConsolaTest: DescribeSpec ({
             Country(
                 "Brazil",
                 "BRA",
+                "BR",
                 "Brasília",
                 "Americas",
                 206135893,
@@ -46,6 +48,7 @@ class ConsolaTest: DescribeSpec ({
                 Country(
                     "Argentina",
                     "ARG",
+                    "AR",
                     "Buenos Aires",
                     "Americas",
                     43590400,
@@ -83,6 +86,7 @@ class ConsolaTest: DescribeSpec ({
                 Country(
                     "Brazil",
                     "BRA",
+                    "BR",
                     "Brasília",
                     "Americas",
                     206135893,
@@ -124,6 +128,7 @@ class ConsolaTest: DescribeSpec ({
                 Country(
                     "Indonesia",
                     "IDN",
+                    "IN",
                     "Jakarta",
                     "Asia",
                     258705000,

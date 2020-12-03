@@ -16,6 +16,7 @@ class ObservatorioMockkTest : DescribeSpec({
         Country(
             "Argentina",
             "ARG",
+            "AR",
             "Buenos Aires",
             "Americas",
             43590400,
@@ -29,6 +30,7 @@ class ObservatorioMockkTest : DescribeSpec({
         Country(
             "Brazil",
             "BRA",
+            "BR",
             "Brasília",
             "Americas",
             206135893,
@@ -42,6 +44,7 @@ class ObservatorioMockkTest : DescribeSpec({
         Country(
             "Peru",
             "PER",
+            "PE",
             "Lima",
             "Americas",
             31488700,
@@ -55,6 +58,7 @@ class ObservatorioMockkTest : DescribeSpec({
         Country(
             "Bolivia (Plurinational State of)",
             "BOL",
+            "BO",
             "Sucre",
             "Americas",
             10985059,
@@ -69,6 +73,7 @@ class ObservatorioMockkTest : DescribeSpec({
         Country(
             "Spain",
             "ESP",
+            "ES",
             "Madrid",
             "Europe",
             46438422,
@@ -138,6 +143,7 @@ class ObservatorioMockkTest : DescribeSpec({
             Country(
                 "Argentina",
                 "ARG",
+                "AR",
                 "Buenos Aires",
                 "Americas",
                 43590400,
@@ -148,6 +154,7 @@ class ObservatorioMockkTest : DescribeSpec({
             Country(
                 "Brazil",
                 "BRA",
+                "BR",
                 "Brasília",
                 "Americas",
                 206135893,
@@ -159,6 +166,7 @@ class ObservatorioMockkTest : DescribeSpec({
             Country(
                 "Peru",
                 "PER",
+                "PE",
                 "Lima",
                 "Americas",
                 31488700,
@@ -169,6 +177,7 @@ class ObservatorioMockkTest : DescribeSpec({
             Country(
                 "Spain",
                 "ESP",
+                "ES",
                 "Real Madrid",
                 "Europe",
                 46438022,
@@ -179,6 +188,7 @@ class ObservatorioMockkTest : DescribeSpec({
             Country(
                 "Bolivia (Plurinational State of)",
                 "BOL",
+                "BO",
                 "Sucre",
                 "Americas",
                 10985059,
@@ -189,6 +199,7 @@ class ObservatorioMockkTest : DescribeSpec({
             Country(
                 "China",
                 "CHN",
+                "CH",
                 "Beijing",
                 "Asia",
                 1377422166,
@@ -199,6 +210,7 @@ class ObservatorioMockkTest : DescribeSpec({
             Country(
                 "India",
                 "IND",
+                "IN",
                 "New Delhi",
                 "Asia",
                 1295210000,
@@ -209,6 +221,7 @@ class ObservatorioMockkTest : DescribeSpec({
             Country(
                 "United States of America",
                 "USA",
+                "US",
                 "Washington, D.C.",
                 "Americas",
                 323947000,
@@ -219,6 +232,7 @@ class ObservatorioMockkTest : DescribeSpec({
             Country(
                 "Indonesia",
                 "IDN",
+                "ID",
                 "Jakarta",
                 "Asia",
                 258705000,

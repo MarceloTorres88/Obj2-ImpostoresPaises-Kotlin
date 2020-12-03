@@ -16,11 +16,11 @@ api.buscarPaisesPorNombre("spa")
 
 api.buscarPaisesPorNombre("china")
 //
-//api.buscarPaisesPorNombre("India")
+api.buscarPaisesPorNombre("India")
 //
-//api.buscarPaisesPorNombre("united states of america")
+api.buscarPaisesPorNombre("united states of america")
 //
-//api.buscarPaisesPorNombre("nigeria")
+api.buscarPaisesPorNombre("nigeria")
 //
 //
 
