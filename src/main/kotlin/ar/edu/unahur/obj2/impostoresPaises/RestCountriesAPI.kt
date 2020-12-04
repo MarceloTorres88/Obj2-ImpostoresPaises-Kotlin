@@ -118,11 +118,15 @@ class CovidMarce : Apis() {
     override val urlBase: String = "https://api.covid19api.com/"
 
     private val infoCovidAdapter = crearAdapter<Summary>(Summary::class.java) // este es para 1 solo contry covid
+    //private val infoAdapter = crearAdapter<CovidInfo>(CovidInfo::class.java)
 
-    private val infoCovidVariosAdapter = crearAdapter<List<Covid>>( // este es para muchos country covids
-        Types.newParameterizedType(List::class.java, Covid::class.java)
+    private val infoCovidVariosAdapter = crearAdapter<List<CovidInfo>>( // este es para muchos country covids
+        Types.newParameterizedType(List::class.java, CovidInfo::class.java)
     )
-    fun todosLosPaises () = obtenerRespuesta("summary", infoCovidAdapter)?.Countries
+    fun todosLosPaises () = obtenerRespuesta("summary", infoCovidAdapter)?.Countries//lista de todos los paises
+
+    fun buscarPaisesPorNombre(Country: String) =
+        obtenerRespuesta("live/country/${Country}", infoCovidVariosAdapter)!!.last()//busca el ultimo pais, la ultima actualizacion
 
 }
 data class Summary(
@@ -136,6 +140,14 @@ data class Covid(
     val TotalDeaths:Int,
     val NewRecovered:Int,
     val TotalRecovered:Int
+)
+data class CovidInfo(
+    val Country: String,
+    val Confirmed: Int,
+    val Deaths: Int,
+    val Recovered: Int,
+    val Active: Int,
+    val Date: String
 )
 
 
