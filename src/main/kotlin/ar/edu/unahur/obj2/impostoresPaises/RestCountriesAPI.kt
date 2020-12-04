@@ -130,6 +130,7 @@ class CovidMarce : Apis() {
 
 }
 data class Summary(
+    //objeto global
     val Countries: List<Covid>
 )
 data class Covid(
@@ -148,5 +149,6 @@ data class CovidInfo(
     val Active: Int,
     val Date: String
 )
-
-
+//"Global":{"NewConfirmed":646333,"TotalConfirmed":64520350,"NewDeaths":12444,"TotalDeaths":1493624,"NewRecovered":461134,"TotalRecovered":41488406}
+//data class Global.... para mostrar toda la info del mundo
+//por las dudas, no lo hago ahora porque tenemos que mostrarlo por consola y no tengo ganas, pero es un objeto
