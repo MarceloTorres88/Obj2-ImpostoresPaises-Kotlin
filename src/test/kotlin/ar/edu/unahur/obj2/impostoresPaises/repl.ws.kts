@@ -1,15 +1,17 @@
 
 import ar.edu.unahur.obj2.impostoresPaises.CovidApi
+import ar.edu.unahur.obj2.impostoresPaises.CovidMarce
 import ar.edu.unahur.obj2.impostoresPaises.RestCountriesAPI
 import io.mockk.InternalPlatformDsl.toStr
 
-
-val covidapi = CovidApi()
+val coMarce = CovidMarce()
+coMarce.todosLosPaises()
+//val covidapi = CovidApi()
 
 //https://api.covid19api.com/country/argentina/status/confirmed?from=2020-09-08T00:00:00Z&to=2020-09-09T00:00:00Z
-covidapi.fechaMas1Dia("2020-09-08T00:00:00Z")
-covidapi.buscarCasosPorPaisPorFecha("argentina", "2020-09-08T00:00:00Z")
-covidapi.prueba()
+//covidapi.fechaMas1Dia("2020-09-08T00:00:00Z")
+//covidapi.buscarCasosPorPaisPorFecha("argentina", "2020-09-08T00:00:00Z")
+//covidapi.prueba()
 
 // Algunos ejemplos para que jueguen un poco
 // con lo que devuelve la API
@@ -60,4 +62,5 @@ covidapi.prueba()
 //d
 
 //api.todosLosPaises()
+
 
