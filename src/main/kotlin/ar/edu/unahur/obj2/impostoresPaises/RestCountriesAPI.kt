@@ -142,7 +142,6 @@ data class Covid(
     val TotalRecovered:Int
 )
 data class CovidInfo(
-    val Country: String,
     val Confirmed: Int,
     val Deaths: Int,
     val Recovered: Int,

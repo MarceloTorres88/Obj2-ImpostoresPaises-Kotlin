@@ -6,9 +6,12 @@ class ObservatorioApi(private var api: RestCountriesAPI = RestCountriesAPI()) {
 // por que se dificultaba el uso del usuario en la consola, ya que esta requeria que los paises
 // esten escritos exactamente como se llama el pais y no por parte del nombre.
 // EJ: bolivia (caso peticiones api) <-> Bolivia (Plurinational State of) (caso peticiones lista)
-
+    private var apiCov = CovidMarce()
     fun encontrarPais(pais: String) : Pais =
         AdapterCountry( api.buscarPaisesPorNombre(pais).first() )
+
+    fun econtrarPaisCovid(pais: String)=
+        AdapterCountryCovid(api.buscarPaisesPorNombre(pais).first(),apiCov.buscarPaisesPorNombre(pais))
 
     fun sonLimitrofes(pais1: String, pais2: String): Boolean {
         val paisUno = this.encontrarPais(pais1)

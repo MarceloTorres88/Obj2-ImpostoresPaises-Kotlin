@@ -47,6 +47,7 @@ class Programa (api: RestCountriesAPI = RestCountriesAPI()){
                     4 -> opcionDosTresCuatro()
                     5 -> quintaOpcion()
                     6 -> sextaOpcion()
+                    7 -> septimaOpcion()
                     else -> errorReingresoMenu()
                 }
             }
@@ -128,6 +129,19 @@ class Programa (api: RestCountriesAPI = RestCountriesAPI()){
             entradaSalida.escribirLinea("Hubo un error con la api, volvemos al menu.")
         }
         finally {
+            volverAlMenu()
+        }
+    }
+    private fun septimaOpcion() {
+        entradaSalida.escribirLinea("Ingrese el nombre de un pais")
+        try {       // intenta buscar el pais e imprimir la informacion
+            val pais = ObsvApi.econtrarPaisCovid(entradaSalida.leerLinea())
+            entradaSalida.escribirLinea("El pais ${pais.name} tiene ${pais.population} habitantes y habla ${pais.languages}, casos activos ${pais.Active}")
+        }
+        catch (e: Exception){       // si hay error lo dice
+            entradaSalida.escribirLinea("No existe tal pais, volvemos al menu.")
+        }
+        finally {       // muestra de nuevo el menu y espera un numero en opcionMenu
             volverAlMenu()
         }
     }

@@ -1,12 +1,15 @@
 
 import ar.edu.unahur.obj2.impostoresPaises.CovidApi
 import ar.edu.unahur.obj2.impostoresPaises.CovidMarce
+import ar.edu.unahur.obj2.impostoresPaises.ObservatorioApi
 import ar.edu.unahur.obj2.impostoresPaises.RestCountriesAPI
 import io.mockk.InternalPlatformDsl.toStr
-
-val coMarce = CovidMarce()
+val observatorioCov = ObservatorioApi(RestCountriesAPI())
+observatorioCov.econtrarPaisCovid("argentina")
+observatorioCov.encontrarPais("Argentina")
+//val coMarce = CovidMarce()
 //coMarce.todosLosPaises()
-coMarce.buscarPaisesPorNombre("argentina")
+//coMarce.buscarPaisesPorNombre("argentina")
 //val covidapi = CovidApi()
 
 //https://api.covid19api.com/country/argentina/status/confirmed?from=2020-09-08T00:00:00Z&to=2020-09-09T00:00:00Z
