@@ -119,12 +119,11 @@ class CovidMarce : Apis() {
 
     private val infoCovidAdapter = crearAdapter<Summary>(Summary::class.java) // este es para 1 solo contry covid
 
-//    private val infoCovidVariosAdapter = crearAdapter<List<CovidCountry>>( // este es para muchos country covids
-//        Types.newParameterizedType(List::class.java, CovidCountry::class.java)
-//    )
+    private val infoCovidVariosAdapter = crearAdapter<List<Covid>>( // este es para muchos country covids
+        Types.newParameterizedType(List::class.java, Covid::class.java)
+    )
 
-    fun todosLosPaises () = obtenerRespuesta("summary", infoCovidAdapter)
-    // prueba de que realmente entrega lo que quiero
+    fun todosLosPaises () = obtenerRespuesta("summary", infoCovidAdapter)?.Countries
 
 }
 data class Summary(
