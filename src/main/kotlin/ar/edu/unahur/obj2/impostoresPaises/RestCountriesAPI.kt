@@ -122,7 +122,6 @@ class CovidMarce : Apis() {
     private val infoCovidVariosAdapter = crearAdapter<List<Covid>>( // este es para muchos country covids
         Types.newParameterizedType(List::class.java, Covid::class.java)
     )
-
     fun todosLosPaises () = obtenerRespuesta("summary", infoCovidAdapter)?.Countries
 
 }
